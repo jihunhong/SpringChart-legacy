@@ -8,7 +8,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.cafe24</groupId>
-	<artifactId>ChartCrawler</artifactId>
+	<artifactId>chartcrawler</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ChartCrawler</name>
 	<description>Toy project for Spring Boot</description>
