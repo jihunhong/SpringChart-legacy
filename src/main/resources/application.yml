@@ -1,0 +1,15 @@
+spring:
+  profiles: 
+    active: local
+---
+
+spring:
+  profiles: local
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  h2:
+    console:
+      enabled: true
+  server: 8080
