@@ -47,7 +47,7 @@ public class JsoupParsingTest {
 			
 			for(Element elment : elments){
                 map.put(elment.attr("property"), elment.attr("content"));
-				System.out.println(elment.attr("property") + "  :  " + elment.attr("content"));
+				// System.out.println(elment.attr("property") + "  :  " + elment.attr("content"));
 			// 	:  
 			// 	:  width=device-width, initial-scale=1
 			// 	:  Hugo 0.55.3 with theme Tranquilpeak 0.4.3-BETA
@@ -75,7 +75,7 @@ public class JsoupParsingTest {
 	}
 
 	@Test
-	public void 멜론_차트_파싱_테스트(){
+	public void 멜론_차트_파싱_테스트_1to100(){
 
 		Map<String, String> music_info = new HashMap<>();
 		// 파싱한 데이터를
@@ -92,13 +92,13 @@ public class JsoupParsingTest {
 			Elements artist_names = document.getElementsByClass("ellipsis rank02");
 			// 가수 이름
 			
-			for(int i=0; i < music_titles.size(); i++){
+			for(int i=0; i < 100; i++){
 
 				String title  = music_titles.get(i).text();
 				String artist = artist_names.get(i).getElementsByTag("span").text();
 
                 music_info.put( title , artist );
-				System.out.println( title + " : " + artist );
+				// System.out.println( title + " : " + artist );
 				// 작은 것들을 위한 시 (Boy With Luv) feat. Halsey	:	방탄소년단
 				// 사랑에 연습이 있었다면 (Prod. 2soo)	:	임재현
 				// AH YEAH (아예)	:	WINNER
@@ -110,6 +110,87 @@ public class JsoupParsingTest {
 		}catch(NullPointerException e){
 			e.printStackTrace();
 		}catch(IOException e){
+			e.printStackTrace();
+		}
+
+		assertNotNull(music_info);
+	}
+
+	@Test
+	public void 지니뮤직_차트_파싱_테스트_1to50(){
+		Map<String, String> music_info = new HashMap<>();
+
+		try{
+
+			String url = "https://genie.co.kr/chart/top200";
+
+			Document document = Jsoup.connect(url).get();
+
+			Elements music_titles = document.getElementsByClass("title ellipsis");
+			// 노래 제목
+
+			Elements artist_names = document.getElementsByClass("artist ellipsis");
+			// 가수 이름
+			
+			for(int i=0; i < 50; i++){
+
+				String title  = music_titles.get(i).text();
+				String artist = artist_names.get(i+5).text();
+				// 1위부터 5위까지 표시해주는 프리뷰가 있어서 5부터 시작해야함
+
+                music_info.put( title , artist );
+				System.out.println( title + " : " + artist );       
+			}
+
+		}catch(NullPointerException e){
+			e.printStackTrace();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		assertNotNull(music_info);
+	}
+
+	@Test
+	public void 벅스뮤직_차트_파싱_테스트_1_to100(){
+		Map<String, String> music_info = new HashMap<>();
+
+		try{
+
+			String url = "https://music.bugs.co.kr/chart";
+
+			Document document = Jsoup.connect(url).get();
+
+			Elements music_titles = document.getElementsByClass("title");
+			// 노래 제목
+			
+
+			Elements artist_names = document.getElementsByClass("artist");
+			// 가수 이름
+			
+			for(int i=0; i < 100; i++){
+
+				String title  = music_titles.get(i+3).text();
+				String artist = artist_names.get(i+1).text();
+
+                music_info.put( title , artist );
+				System.out.println( title + " : " + artist );    
+				// 너에게 못했던 내 마지막 말은 : 다비치
+				// AH YEAH (아예) : WINNER
+				// 비가 오잖아 : 소유 (SOYOU) 소유 (SOYOU)
+				// 주저하는 연인들을 위해 : 잔나비
+				// 작은 것들을 위한 시 (Boy With Luv) (feat. Halsey) : 방탄소년단 방탄소년단
+				// FANCY : TWICE (트와이스)
+				// 다섯 번째 계절 (SSFWL) : 오마이걸(OH MY GIRL)
+				// 2002 : Anne-Marie(앤 마리)
+				// 뜨거운 여름밤은 가고 남은 건 볼품없지만 : 잔나비
+				// bad guy : Billie Eilish(빌리 아일리시)
+				// 사랑에 연습이 있었다면 (Prod. 2soo) : 임재현   
+			}
+
+		}catch(NullPointerException e){
+			e.printStackTrace();
+		}catch (IOException e) {
 			e.printStackTrace();
 		}
 
