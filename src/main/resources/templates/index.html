@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title> - </title>
+</head>
+<body>
+    <div style="border: 3px solid green;">
+        <table>
+            <thead>
+                <tr>
+                    <th> Rank </th>
+                    <th> Title </th>
+                    <th> Artist </th>
+                </tr>
+            </thead>
+            <tbody>
+            <!-- <tr th:if="${melon.empty}">
+                    <td colspan="2"> No Result Available </td>
+                </tr> -->
+                <tr th:each="music : ${melon}">
+                    <td><span th:text="${music.rank}"> Rank </span></td>
+                    <td><span th:text="${music.title}"> Title </span></td>
+                    <td><span th:text="${music.artist}"> Artist </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="border: 3px solid blue;">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Rank </th>
+                        <th> Title </th>
+                        <th> Artist </th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- <tr th:if="${genie.empty}">
+                        <td colspan="2"> No Result Available </td>
+                    </tr> -->
+                    <tr th:each="music : ${genie}">
+                        <td><span th:text="${music.rank}"> Rank </span></td>
+                        <td><span th:text="${music.title}"> Title </span></td>
+                        <td><span th:text="${music.artist}"> Artist </span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="border: 3px solid gray;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Rank </th>
+                            <th> Title </th>
+                            <th> Artist </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- <tr th:if="${bugs.empty}">
+                            <td colspan="2"> No Result Available </td>
+                        </tr> -->
+                        <tr th:each="music : ${bugs}">
+                            <td><span th:text="${music.rank}"> Rank </span></td>
+                            <td><span th:text="${music.title}"> Title </span></td>
+                            <td><span th:text="${music.artist}"> Artist </span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+</body>
+</html>
