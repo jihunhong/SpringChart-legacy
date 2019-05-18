@@ -1,75 +1,155 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+ 
 <head>
-    <title> - </title>
+
+<title> - </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="/MDB/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="/MDB/css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="/MDB/css/style-0.0.4.min.css" rel="stylesheet">
+
+  <!-- Your custom styles (optional) -->
+  <link href="/css/chart.css" rel="stylesheet">
+
+  <!-- Your custom styles (optional) -->
+  <link href="/css/inital_css.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div style="border: 3px solid green;">
-        <table>
-            <thead>
-                <tr>
-                    <th> Rank </th>
-                    <th> Title </th>
-                    <th> Artist </th>
-                </tr>
-            </thead>
-            <tbody>
-            <!-- <tr th:if="${melon.empty}">
-                    <td colspan="2"> No Result Available </td>
-                </tr> -->
-                <tr th:each="music : ${melon}">
-                    <td><span th:text="${music.rank}"> Rank </span></td>
-                    <td><span th:text="${music.title}"> Title </span></td>
-                    <td><span th:text="${music.artist}"> Artist </span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<!-- Image and text -->
+	
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" style="    background-color: #161c27b5;">
+        <div class="container">
+    
+          <!-- Brand -->
+          <a class="navbar-brand" href="#">
+            <strong>Cherry</strong>
+          </a>
+    
+          <!-- Collapse -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+    
+          <!-- Links -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active_nav">
+                  <a class="nav-link waves-effect waves-light" href="/">HOME
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link waves-effect waves-light" href="/melon">
+                    MELON</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link waves-effect waves-light" href="/genie">
+                    GENIE
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light" href="/bugs">
+                      BUGS
+                    </a>
+                  </li>
+              </ul>
+    
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+              <li class="nav-item">
+                <a href="#" class="nav-link waves-effect waves-light" target="_blank">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="mailto:redgee49@gmail.com" class="nav-link waves-effect waves-light" target="_blank">
+                  <i class="far fa-envelope"></i>
+                </a>
+              </li>
+            </ul>
+    
+          </div>
+    
+        </div>
+      </nav>
+      <div class="view" style="overflow:unset;">
 
-    <div style="border: 3px solid blue;">
-            <table>
-                <thead>
-                    <tr>
-                        <th> Rank </th>
-                        <th> Title </th>
-                        <th> Artist </th>
-                    </tr>
-                </thead>
-                <tbody>
-                <!-- <tr th:if="${genie.empty}">
-                        <td colspan="2"> No Result Available </td>
-                    </tr> -->
-                    <tr th:each="music : ${genie}">
-                        <td><span th:text="${music.rank}"> Rank </span></td>
-                        <td><span th:text="${music.title}"> Title </span></td>
-                        <td><span th:text="${music.artist}"> Artist </span></td>
-                    </tr>
-                </tbody>
-            </table>
+        <!--Video source-->
+        <video class="video-intro" autoplay="true" muted="" id="video_bg" loop="loop" style="position:fixed;">
+          <source src="/MDB/video.mp4" type="video/mp4">
+        </video>
+
+        <!-- Mask & flexbox options-->
+        
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center" style="position:fixed;">
         </div>
 
-        <div style="border: 3px solid gray;">
-                <table>
-                    <thead>
-                        <tr>
-                            <th> Rank </th>
-                            <th> Title </th>
-                            <th> Artist </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!-- <tr th:if="${bugs.empty}">
-                            <td colspan="2"> No Result Available </td>
-                        </tr> -->
-                        <tr th:each="music : ${bugs}">
-                            <td><span th:text="${music.rank}"> Rank </span></td>
-                            <td><span th:text="${music.title}"> Title </span></td>
-                            <td><span th:text="${music.artist}"> Artist </span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-sm-9 col-lg-9" style="
+        margin: 35% auto 40px auto !important;">
 
+                <div class="col-sm-12 col-lg-12 mx-5">
+
+                    <ul class="list-group chart">
+                        <li class="list-group-item"
+                        th:each="music : ${melon}">
+                            <span class="music_rank" th:text="${music.rank}" style="margin:15px;">1</span>
+                            <span class="music_title" th:text="${music.title}" style="margin:15px;">Default Title</span>
+                        </li>
+                    </ul>
+                </div>
+          </div>
+
+
+      </div>
+
+
+        
+
+
+      <footer class="page-footer text-center font-small wow fadeIn" style="visibility: visible; animation-name: fadeIn;      
+      width: 100%;
+      z-index: -1;">
+
+   
+  
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            © 2019 Copyright:
+            <a href="#" target="_blank"> Cherry.com </a>
+          </div>
+        <!--/.Copyright--> 
+  
+      </footer>
+
+      <script type="text/javascript" src="/MDB/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/MDB/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/MDB/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/MDB/js/mdb.min.js"></script>
+    <div class="hiddendiv common"></div>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
 
 </body>
 </html>
