@@ -14,13 +14,16 @@
   <!-- Material Design Bootstrap -->
   <link href="/MDB/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="/MDB/css/style-0.0.4.min.css" rel="stylesheet">
+  <link href="/css/custom_style-0.0.1.min.css" rel="stylesheet">
 
   <!-- Your custom styles (optional) -->
   <link href="/css/chart.css" rel="stylesheet">
 
   <!-- Your custom styles (optional) -->
   <link href="/css/inital_css.css" rel="stylesheet">
+
+  <!-- Color Css -->
+  <link href="/css/color.css" rel="stylesheet">
 
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 
@@ -35,7 +38,7 @@
     
           <!-- Brand -->
           <a class="navbar-brand" href="#">
-            <strong>Cherry</strong>
+            <strong class="logo"><span class="cherry_color">C</span>herry</strong>
           </a>
     
           <!-- Collapse -->
@@ -56,16 +59,16 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link waves-effect waves-light" href="/melon">
-                    MELON</a>
+                    <span class="melon_color">M</span>ELON</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link waves-effect waves-light" href="/genie">
-                    GENIE
+                    <span class="genie_color">G</span>ENIE
                   </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link waves-effect waves-light" href="/bugs">
-                      BUGS
+                      <span class="bugs_color">B</span>UGS
                     </a>
                   </li>
               </ul>
@@ -95,19 +98,56 @@
           <source src="/MDB/video.mp4" type="video/mp4">
         </video>
 
-        <!-- Mask & flexbox options-->
         
         <div class="mask rgba-black-light d-flex justify-content-center align-items-center" style="position:fixed;">
+          <!-- Top1 Contents Preview -->
+          <div class="container">
+
+
+            <div class="row preview_header d-flex h-100 justify-content-center align-items-center wow fadeIn">
+
+              <div class="col-md-10 mb-4 white-text text-center text-md-left">
+  
+                <h1 class="display-4 font-weight-bold">Real Time in <img th:src="'/img/' + ${name} + '.png'" alt="로고 이미지" id="melon_logo"> Chart</h1>
+  
+                <hr class="hr-light">
+  
+                <div>
+                  <img class="preview_one_img" src="/img/number-one.svg"/>
+                  <p class="preview_top1_text" th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + 'Unknown Album Name'">
+                    Top 1 Music Title <br> Artist Name <br> Album Name
+                  </p>
+
+                </div>
+  
+                <p class="mb-4 d-none d-md-block">
+                  <!-- music description -->
+                  <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong> 
+                </p>
+  
+                <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
+                  <i class="fab fa-youtube red-text ml-2"></i>
+                </a>
+                <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
+                  <i class="fas fa-download red-text ml-2"></i>
+                </a>
+  
+              </div>
+  
+            </div>
+
+  
+          </div>
         </div>
 
-        <div class="col-sm-9 col-lg-9" style="
-        margin: 35% auto 40px auto !important;">
+        <div class="col-sm-9 col-lg-9 chart">
 
-                <div class="col-sm-12 col-lg-12 mx-5">
+                <div class="col-sm-12 col-lg-12">
 
-                    <ul class="list-group chart">
+                    <ul class="list-group chart_list">
                         <li class="list-group-item"
-                        th:each="music : ${melon}">
+                        th:each="music : ${list}">
                             <span class="music_rank" th:text="${music.rank}" style="margin:15px;">1</span>
                             <span class="music_title" th:text="${music.title}" style="margin:15px;">Default Title</span>
                         </li>

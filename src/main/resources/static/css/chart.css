@@ -1,3 +1,15 @@
+.logo{
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.nav-item{
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+}
+
 span.music_rank {
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
@@ -8,4 +20,35 @@ span.music_title{
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
     font-weight: 800;
+}
+
+.preview_header{
+    visibility: visible;
+    animation-name: fadeIn;
+    background-color: #00000078;
+    padding: 25px 10px 25px 10px;
+}
+
+.preview_top1_text{
+    display: inline-block;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.preview_one_img{
+    margin: 15px;
+    margin-bottom: 80px;
+    display: inline-block !important;
+}
+
+#melon_logo{    
+    display: inline-block;
+    margin-bottom: 17px;
+
+}
+
+
+.chart{
+    margin: 50% auto 40px auto !important;
+    width: unset !important;
 }
