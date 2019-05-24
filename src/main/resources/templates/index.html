@@ -3,7 +3,10 @@
  
 <head>
 
-<title> - </title>
+<title> 🍒 CherryChart </title>
+<meta property="og:title" content="CherryChart">
+<meta property="og:site_name" content="🍒 CherryChart">
+<meta property="og:image" content="/img/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -114,7 +117,7 @@
   
                 <div>
                   <img class="preview_one_img" src="/img/number-one.svg"/>
-                  <p class="preview_top1_text" th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + 'Unknown Album Name'">
+                  <p class="preview_top1_text" th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + ${list[0].album}">
                     Top 1 Music Title <br> Artist Name <br> Album Name
                   </p>
 
@@ -148,8 +151,10 @@
                     <ul class="list-group chart_list">
                         <li class="list-group-item"
                         th:each="music : ${list}">
-                            <span class="music_rank" th:text="${music.rank}" style="margin:15px;">1</span>
-                            <span class="music_title" th:text="${music.title}" style="margin:15px;">Default Title</span>
+                            <span class="music_rank col-lg-2" th:text="${music.rank}" style="margin:15px;">RANK NUMBER</span>
+                            <span class="music_title col-lg-4" th:text="${music.title}" style="margin:15px;">Default Title</span>
+                            <span class="music_title col-lg-2" th:text="${music.artist}" style="margin:15px;">Default Aritst</span>
+                            <span class="music_title col-lg-2" th:text="${music.album}" style="margin:15px;">Default Album</span>
                         </li>
                     </ul>
                 </div>
