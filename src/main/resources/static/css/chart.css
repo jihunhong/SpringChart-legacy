@@ -10,6 +10,16 @@
     font-weight: 800;
 }
 
+.list-group-item span{
+    display: inline-block;
+    float: left;
+    text-align: left;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    overflow: hidden;
+}
+
 span.music_rank {
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
@@ -52,3 +62,4 @@ span.music_title{
     margin: 50% auto 40px auto !important;
     width: unset !important;
 }
+
