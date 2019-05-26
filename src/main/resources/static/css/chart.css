@@ -63,3 +63,7 @@ span.music_title{
     width: unset !important;
 }
 
+.music_link a i{
+    font-size: 25px;
+    color:red;
+}

@@ -152,10 +152,14 @@
                         <li class="list-group-item"
                         th:each="music : ${list}">
                             <span class="music_rank col-lg-1" th:text="${music.rank}">RANK NUMBER</span>
-                            <span class="music_title col-lg-8" th:text="${music.title}">Default Title</span>
+                            <span class="music_title col-lg-7" th:text="${music.title}">Default Title</span>
                             <span class="music_title col-lg-3" th:text="${music.artist}">Default Aritst</span>
                             <!-- <span class="music_title col-lg-2" th:text="${music.album}">Default Album</span> -->
-
+                            <span class="music_link col-lg-1">
+                              <a class="youtube">
+                                <i class="fab fa-youtube"></i>
+                              </a>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -198,4 +202,12 @@
     </script>
 
 </body>
+<script>
+
+var el = document.getElementsByClassName("youtube");
+el.addEventListener("click", function(event){
+  console.log(this);
+});
+
+</script>
 </html>
