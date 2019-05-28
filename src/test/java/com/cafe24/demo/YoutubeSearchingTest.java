@@ -45,7 +45,7 @@ public class YoutubeSearchingTest {
     
     private static YouTube youtube;
     
-    private final String apikey = "";
+    private final String apikey = "AIzaSyB42NGzTQzQsib7kVorXbZmDw30bnVhS3w";
     // 유튜브 API 키값
 
     private String Default_Input_Query = "YouTube Developers Live.";
@@ -143,7 +143,7 @@ public class YoutubeSearchingTest {
           주석화 시키고 임의의 쿼리 넣었음                           
         ********************************************************************/
 
-        inputQuery = "YouTube Developers Live.";
+        inputQuery = "사랑에 연습이 있었다면 (Prod. 2soo)";
         
         return inputQuery;
       }

@@ -1,6 +1,8 @@
 package com.cafe24.demo.Controller.api;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.cafe24.demo.Service.YoutubeService;
 import com.google.api.services.youtube.model.SearchResult;
@@ -20,8 +22,7 @@ public class YoutubeController {
     YoutubeService youtubeService;
 
     @RequestMapping("/search")
-    @ResponseBody
-    public List<SearchResult> SearchOnYoutube(@RequestParam(value = "q") String searchQuery) {
+    public @ResponseBody ArrayList<Map<String, String>> SearchOnYoutube(@RequestParam(value = "q") String searchQuery) {
 
         return youtubeService.SearchOnYoutube(searchQuery);
     }

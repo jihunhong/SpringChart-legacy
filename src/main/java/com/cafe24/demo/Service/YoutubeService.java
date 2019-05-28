@@ -1,8 +1,11 @@
 package com.cafe24.demo.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
@@ -14,6 +17,7 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
+import com.google.api.services.youtube.model.SearchResultSnippet;
 
 import org.springframework.stereotype.Service;
 
@@ -26,26 +30,27 @@ public class YoutubeService {
 
     private static YouTube youtube;
 
-    private final String apikey = "";
+    private final String apikey = "AIzaSyB42NGzTQzQsib7kVorXbZmDw30bnVhS3w";
 
 
     
-    public List<SearchResult> SearchOnYoutube(String searchQuery) {
+    public ArrayList<Map<String, String>> SearchOnYoutube(String searchQuery) {
 
         List<SearchResult> searchResultList = null;
+        SearchListResponse searchResponse = null;
 
         try {
 
             youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
-            }).setApplicationName("youtube-cmdline-search-sample").build();
+            }).setApplicationName("ChartCrawler").build();
 
             YouTube.Search.List search = youtube.search().list("id,snippet");
             /*
              * It is important to set your developer key from the Google Developer Console
              * for non-authenticated requests (found under the API Access tab at this link:
-             * code.google.com/apis/). This is good practice and increased your quota.
+             * c). This is good practice and increased your quota.
              */
 
             String apiKey = apikey;
@@ -56,15 +61,27 @@ public class YoutubeService {
 
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
             search.setMaxResults((long) 10);
-            SearchListResponse searchResponse = search.execute();
+            searchResponse = search.execute();
 
             searchResultList = searchResponse.getItems();
+            System.out.println(searchResponse.toString());
 
         } catch (Throwable t) {
             t.printStackTrace();
         }
-
-        return searchResultList;
+        ResourceId rId;
+        ArrayList<Map<String, String>> output = new ArrayList<>();
+    
+        for (SearchResult result : searchResponse.getItems()) {
+            SearchResultSnippet snippet = result.getSnippet();
+            rId = result.getId();
+            Map<String, String> element = new HashMap<String, String>();
+            element.put("title", snippet.getTitle());
+            element.put("url", "http://www.youtube.com/embed/" + rId.getVideoId());
+            output.add(element);
+            System.out.println(element.toString());
+        }
+        return output;
     }
 
 }
