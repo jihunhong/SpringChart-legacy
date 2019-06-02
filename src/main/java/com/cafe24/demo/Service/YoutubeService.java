@@ -13,6 +13,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.Value;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
@@ -30,7 +31,8 @@ public class YoutubeService {
 
     private static YouTube youtube;
 
-    private final String apikey = "AIzaSyB42NGzTQzQsib7kVorXbZmDw30bnVhS3w";
+    @Value("${apikey}")
+    private final String apikey = "";
 
 
     

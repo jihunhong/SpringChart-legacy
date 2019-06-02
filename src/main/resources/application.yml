@@ -12,4 +12,4 @@ spring:
   h2:
     console:
       enabled: true
-  server: 8080
+apikey: "YOTUBE_APIKEY"

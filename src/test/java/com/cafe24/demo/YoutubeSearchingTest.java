@@ -24,6 +24,7 @@ import com.google.api.services.youtube.model.SearchResult;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -45,7 +46,8 @@ public class YoutubeSearchingTest {
     
     private static YouTube youtube;
     
-    private final String apikey = "AIzaSyB42NGzTQzQsib7kVorXbZmDw30bnVhS3w";
+    @Value("${apikey}")
+    private final String apikey = "";
     // 유튜브 API 키값
 
     private String Default_Input_Query = "YouTube Developers Live.";
