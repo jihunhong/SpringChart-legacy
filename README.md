@@ -19,7 +19,7 @@
 
 ## 📷 ScreenShot
 
-<center><img src="/screenshot.gif"></center>
+<center><img src="/19.06.02 screenshot.gif"></center>
 
 ## ✒️ 개요
 기존의 음원 플랫폼은 지니를 사용하다가
