@@ -25,3 +25,5 @@ HELP.md
 /.nb-gradle/
 /build/
 
+## api key yml ###
+*.yml
