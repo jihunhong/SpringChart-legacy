@@ -4,6 +4,7 @@ window.onload = function(){
 
     var event_handler = function(event){
         var title = this.parentElement.parentElement.children[1].innerText;
+        var artist = this.parentElement.parentElement.children[2].innerText;
 
         $.ajax({
             url: "/youtube/api/search?q=" + encodeURIComponent(title),
@@ -11,9 +12,23 @@ window.onload = function(){
             cache : false,
             dataType : "json",
             success:function(result, textStatus, xhr, response){
-                
                 console.log(result);
-                // ajax로 뷰 바꿔주기
+                
+                var official = result[0];
+
+                for(var i in result){
+                    if( result[i].title.includes("official") || result[i].title.includes("MV") ||  result[i].title.includes("M/V")){
+                        official = result[i];
+                    }
+                }
+                
+                document.getElementsByClassName("modal-title")[0].innerHTML = title + "  -  " + artist;
+
+                document.getElementsByClassName("embed-responsive embed-responsive-16by9 z-depth-1-half")[0].innerHTML = "<iframe width='360' height='200' src='https://www.youtube.com/embed/"
+                                                                             + official.url 
+                                                                             + "' frameborder='0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen>"
+                                                                             + "</iframe>";
+
                 
             }
         });

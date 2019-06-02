@@ -67,3 +67,7 @@ span.music_title{
     font-size: 25px;
     color:red;
 }
+
+.modal-title{
+    font-weight:bold;
+}

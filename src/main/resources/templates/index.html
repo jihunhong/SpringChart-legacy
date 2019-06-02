@@ -149,13 +149,33 @@
                 <div class="col-sm-12 col-lg-12">
 
                     <ul class="list-group chart_list">
+                      
+                        <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" data-backdrop='false'>
+                            <div class="modal-dialog modal-lg modal-side modal-bottom-right" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalPreviewLabel"><strong>Modal title</strong></h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body mb-0 p-0">
+                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                        
+                                    </div>
+                                </div>
+                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+
                         <li class="list-group-item"
                         th:each="music : ${list}">
                             <span class="music_rank col-lg-1" th:text="${music.rank}">RANK NUMBER</span>
                             <span class="music_title col-lg-7" th:text="${music.title}">Default Title</span>
                             <span class="music_title col-lg-3" th:text="${music.artist}">Default Aritst</span>
                             <!-- <span class="music_title col-lg-2" th:text="${music.album}">Default Album</span> -->
-                            <span class="music_link col-lg-1">
+                            <span class="music_link col-lg-1" data-toggle="modal" data-target="#exampleModalPreview">
                               <a class="youtube">
                                 <i class="fab fa-youtube"></i>
                               </a>
