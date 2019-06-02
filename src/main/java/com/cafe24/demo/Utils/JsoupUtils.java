@@ -28,15 +28,20 @@ public class JsoupUtils {
 			Elements artist_names = document.getElementsByClass("artist");
 			// 가수 이름
 
+			Elements album_names = document.getElementsByClass("album");
+			// 가수 이름
+
 			for (int i = 0; i < 50; i++) {
 
 				String title = music_titles.get(i + 3).text();
 				String artist = artist_names.get(i + 1).text();
+				String album = artist_names.get(i + 2).text();
 
 				Music music = new Music();
 				music.setRank(i + 1);
 				music.setTitle(title);
 				music.setArtist(artist);
+				music.setAlbum(album);
 
 				list.add(music);
 			}
@@ -106,18 +111,23 @@ public class JsoupUtils {
 			Elements music_titles = document.getElementsByClass("title ellipsis");
 			// 노래 제목
 
-			Elements artist_names = document.getElementsByClass("artist");
+			Elements artist_names = document.getElementsByClass("artist ellipsis");
 			// 가수 이름
 
+			Elements album_names = document.getElementsByClass("albumtitle ellipsis");
+			// 앨범 이름
 			for (int i = 0; i < 50; i++) {
 
 				String title = music_titles.get(i).text();
 				String artist = artist_names.get(i + 5).text();
+				String album = album_names.get(i).text();
 
+				
 				Music music = new Music();
 				music.setRank(i + 1);
 				music.setTitle(title);
 				music.setArtist(artist);
+				music.setAlbum(album);
 
 				list.add(music);
 			}
