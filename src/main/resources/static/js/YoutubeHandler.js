@@ -23,6 +23,8 @@ window.onload = function(){
                     }
                 }
                 
+                document.getElementsByClassName("preview_header")[0].style.backgroundImage="url("+ official.thumbnail + ")";
+
                 document.getElementsByClassName("modal-title")[0].innerHTML = title + "  -  " + artist;
 
                 document.getElementsByClassName("embed-responsive embed-responsive-16by9 z-depth-1-half")[0].innerHTML = "<iframe width='360' height='200' src='https://www.youtube.com/embed/"

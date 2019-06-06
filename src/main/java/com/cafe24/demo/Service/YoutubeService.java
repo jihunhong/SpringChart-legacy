@@ -79,11 +79,17 @@ public class YoutubeService {
         for (SearchResult result : searchResponse.getItems()) {
             SearchResultSnippet snippet = result.getSnippet();
             rId = result.getId();
+            
             thumbnail = result.getSnippet().getThumbnails().getHigh();
+            
 
             Map<String, String> element = new HashMap<String, String>();
             element.put("title", snippet.getTitle());
             element.put("url", rId.getVideoId());
+            if(result.getSnippet().getThumbnails().getMaxres() != null){
+                thumbnail = result.getSnippet().getThumbnails().getMaxres();
+            }
+            
             element.put("thumbnail", thumbnail.getUrl());
             output.add(element);
             System.out.println(element.toString());
