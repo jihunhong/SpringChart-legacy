@@ -68,7 +68,7 @@ public class YoutubeSearchingTest {
             youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
-            }).setApplicationName("youtube-cmdline-search-sample").build();
+            }).setApplicationName("QWER").build();
             
             String queryTerm = getInputQuery();
 
@@ -85,7 +85,7 @@ public class YoutubeSearchingTest {
             search.setQ(queryTerm);
 
             search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/default/url)");
-            search.setMaxResults((long) 10);
+            search.setMaxResults((long) 3);
             SearchListResponse searchResponse = search.execute();
 
             List<SearchResult> searchResultList = searchResponse.getItems();
@@ -104,7 +104,7 @@ public class YoutubeSearchingTest {
 
         System.out.println("\n=============================================================");
         System.out.println(
-            10 + " videos for search on \"" + query + "\".");
+            " videos for search on \"" + query + "\".");
         System.out.println("=============================================================\n");
     
         if (!iteratorSearchResults.hasNext()) {

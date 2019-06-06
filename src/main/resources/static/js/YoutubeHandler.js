@@ -5,9 +5,10 @@ window.onload = function(){
     var event_handler = function(event){
         var title = this.parentElement.parentElement.children[1].innerText;
         var artist = this.parentElement.parentElement.children[2].innerText;
+        var query = title + artist;
 
         $.ajax({
-            url: "/youtube/api/search?q=" + encodeURIComponent(title),
+            url: "/youtube/api/search?q=" + encodeURIComponent(query),
             type: 'GET',
             cache : false,
             dataType : "json",
@@ -16,7 +17,7 @@ window.onload = function(){
                 
                 var official = result[0];
 
-                for(var i in result){
+                for(var i=2; i>=0; i--){
                     if( result[i].title.includes("official") || result[i].title.includes("MV") ||  result[i].title.includes("M/V")){
                         official = result[i];
                     }
