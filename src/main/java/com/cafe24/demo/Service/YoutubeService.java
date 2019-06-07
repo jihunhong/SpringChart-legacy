@@ -85,11 +85,7 @@ public class YoutubeService {
 
             Map<String, String> element = new HashMap<String, String>();
             element.put("title", snippet.getTitle());
-            element.put("url", rId.getVideoId());
-            if(result.getSnippet().getThumbnails().getMaxres() != null){
-                thumbnail = result.getSnippet().getThumbnails().getMaxres();
-            }
-            
+            element.put("url", rId.getVideoId());           
             element.put("thumbnail", thumbnail.getUrl());
             output.add(element);
             System.out.println(element.toString());

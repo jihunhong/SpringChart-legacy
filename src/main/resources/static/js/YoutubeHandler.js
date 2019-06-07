@@ -23,7 +23,6 @@ window.onload = function(){
                     }
                 }
                 
-                document.getElementsByClassName("preview_header")[0].style.backgroundImage="url("+ official.thumbnail + ")";
 
                 document.getElementsByClassName("modal-title")[0].innerHTML = title + "  -  " + artist;
 
