@@ -28,3 +28,6 @@ HELP.md
 
 ## api key yml ###
 *.yml
+
+## OAuth Credential ##
+/src/main/resources/google.yml

@@ -47,7 +47,7 @@ public class YoutubeService {
             youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
                 public void initialize(HttpRequest request) throws IOException {
                 }
-            }).setApplicationName("QWER").build();
+            }).setApplicationName("ChartCrawler").build();
 
             YouTube.Search.List search = youtube.search().list("id,snippet");
             /*
