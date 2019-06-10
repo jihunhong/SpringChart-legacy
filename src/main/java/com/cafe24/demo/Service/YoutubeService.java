@@ -35,8 +35,6 @@ public class YoutubeService {
     @Value("${apikey}")
     private String apikey = "";
 
-
-    
     public ArrayList<Map<String, String>> SearchOnYoutube(String searchQuery) {
 
         List<SearchResult> searchResultList = null;
@@ -75,17 +73,16 @@ public class YoutubeService {
         ResourceId rId;
         Thumbnail thumbnail;
         ArrayList<Map<String, String>> output = new ArrayList<>();
-    
+
         for (SearchResult result : searchResponse.getItems()) {
             SearchResultSnippet snippet = result.getSnippet();
             rId = result.getId();
-            
+
             thumbnail = result.getSnippet().getThumbnails().getHigh();
-            
 
             Map<String, String> element = new HashMap<String, String>();
             element.put("title", snippet.getTitle());
-            element.put("url", rId.getVideoId());           
+            element.put("url", rId.getVideoId());
             element.put("thumbnail", thumbnail.getUrl());
             output.add(element);
             System.out.println(element.toString());
