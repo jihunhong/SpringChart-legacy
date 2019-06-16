@@ -68,6 +68,11 @@ span.music_title{
     color:red;
 }
 
+.add_button a i{
+    color: black;
+    font-size: 24px;
+}
+
 .modal-title{
     font-weight:bold;
 }

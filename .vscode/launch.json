@@ -5,13 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "java",
-            "name": "CodeLens (Launch) - DemoApplication",
-            "request": "launch",
-            "mainClass": "com.cafe24.demo.DemoApplication",
-            "projectName": "chartcrawler"
-        },
-        {
             "name": "Java",
             "type": "java",
             "request": "launch",

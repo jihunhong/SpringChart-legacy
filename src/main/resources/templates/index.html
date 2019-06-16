@@ -97,6 +97,11 @@
                   <i class="far fa-envelope"></i>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/oauth2/authorization/google" class="nav-link waves-effect waves-light" target="_blank">
+                  <i class="fab fa-google"></i>
+                </a>
+              </li>
             </ul>
     
           </div>
@@ -182,11 +187,16 @@
                         th:each="music : ${list}">
                             <span class="music_rank col-lg-1" th:text="${music.rank}">RANK NUMBER</span>
                             <span class="music_title col-lg-7" th:text="${music.title}">Default Title</span>
-                            <span class="music_title col-lg-3" th:text="${music.artist}">Default Aritst</span>
+                            <span class="music_title col-lg-2" th:text="${music.artist}">Default Aritst</span>
                             <!-- <span class="music_title col-lg-2" th:text="${music.album}">Default Album</span> -->
                             <span class="music_link col-lg-1" data-toggle="modal" data-target="#exampleModalPreview">
                               <a class="youtube">
                                 <i class="fab fa-youtube"></i>
+                              </a>
+                            </span>
+                            <span class="add_button col-lg-1">
+                              <a class="playlist_add">
+                                <i class="fab fa fa-share-square"></i>
                               </a>
                             </span>
                         </li>

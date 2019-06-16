@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+    <div class="container" style="text-align: center;">
+    
+        <a href="javascript:;" class="btn_social" data-social="google">
+            <img src="https://banner2.kisspng.com/20180603/lcu/kisspng-google-logo-google-search-google-account-5b13d7b19f5413.0778665315280270576526.jpg"/>
+        </a>
+    </div>
+
+
+    <script>
+        $('.btn_social').click(function(){
+            var socialType = $(this).data('social');
+            location.href="/oauth2/authorization/"+socialType;
+        });
+    </script>
+</body>
+</html>

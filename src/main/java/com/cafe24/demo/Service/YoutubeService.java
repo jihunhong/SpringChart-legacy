@@ -85,7 +85,6 @@ public class YoutubeService {
             element.put("url", rId.getVideoId());
             element.put("thumbnail", thumbnail.getUrl());
             output.add(element);
-            System.out.println(element.toString());
         }
         return output;
     }
