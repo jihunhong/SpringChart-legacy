@@ -124,6 +124,25 @@
 
 
 </details>
+<details>
+  <summary> <a>19.06.09 넷째 주</a> </summary>
+
+	 팀별 스터디 자료 준비 때문에 시간이 없어서 진행하지 못했다.
+
+
+</details>
+<details>
+  <summary> <a>19.06.16 다섯번째 주</a> </summary>
+
+	스프링부트 시큐리티 + OAuth2 구현을 위해 [처음 배우는 스프링부트2](http://www.hanbit.co.kr/store/books/look.php?p_code=B4458049183) 를 참고해
+
+	스프링 부트의 1.5버전에서 OAuth2를 구현한 후 2.0버전 으로 리팩토링하는 실습을 진행해봤다. [Repository](https://github.com/jihunhong/Google_OAuth2.0_Example)
+
+	Spring Secuity에 관한 내용과 Filter에 관한 내용정리가 필요해보이고
+
+	OAuth2 로그인을 통해 플레이리스트 추가 기능을 구현하려고 했다.
+
+</details>
 
 
 
@@ -178,6 +197,23 @@
 
 	테스트코드를 리팩토링 해봐야겠다.
 
+
+</details>
+<details>
+  <summary> <a>19.06.09 넷째 주</a> </summary>
+
+	 팀별 스터디 자료 준비 때문에 시간이 없어서 진행하지 못했다.
+
+
+</details>
+<details>
+  <summary> <a>19.06.16 다섯번째 주</a> </summary>
+
+	 OAuth2를 구현해보며 Security에 관한 상세 내용이나
+
+	 OAuth2 dependency에 관한 내용, OAuth2를 테스트하기 위한 테스트 작성에 대해
+
+	 TIL에 정리해보며 업로드할 생각이다.
 
 </details>
 
