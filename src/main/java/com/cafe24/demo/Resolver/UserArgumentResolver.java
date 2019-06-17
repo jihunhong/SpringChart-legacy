@@ -30,8 +30,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
     private UserDAO userDAO;
 
     @Override
-    public Object resolveArgument(MethodParameter arg0, ModelAndViewContainer arg1, NativeWebRequest arg2,
-            WebDataBinderFactory arg3) throws Exception {
+    public Object resolveArgument(MethodParameter arg0, ModelAndViewContainer arg1, NativeWebRequest arg2, WebDataBinderFactory arg3) throws Exception {
 
         HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
         User user = (User) session.getAttribute("user");
@@ -51,9 +50,13 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
                 User convertUser = convertUser(authentication.getAuthorizedClientRegistrationId(), map);
 
-                user = userDAO.findByEmail(convertUser.getEmail());
-                if(user == null){ user = userDAO.save(convertUser); }
+                System.out.println(authentication.toString());
+                
 
+                if(userDAO.findByEmail(convertUser.getEmail()) == null){ user = userDAO.save(convertUser); }
+                
+                user = userDAO.findByEmail(convertUser.getEmail());
+                
                 setRoleIfNotSame(user, authentication, map);
                 session.setAttribute("user", user);
 
@@ -80,7 +83,8 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private User convertUser(String authority, Map<String, Object> map){
         if(SocialType.GOOGLE.getValue().equals(authority)) return getModernUser(SocialType.GOOGLE, map);
-        else return null;
+        
+        return null;
     }
 
     private User getModernUser(SocialType socialType, Map<String, Object> map) {

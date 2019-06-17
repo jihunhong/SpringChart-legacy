@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
 
         http.authorizeRequests()
-                .antMatchers("/", "/oauth2/**", "/login/**", "/MDB/**", "/favicon/**" , "/css/**", "/img/**", "/js/**","/console/***")
+                .antMatchers("/", "/oauth2/**", "/login/**", "/MDB/**", "/favicon/**" , "/css/**", "/img/**", "/js/**","/console/***", "/youtube/**")
                 .permitAll()
                 .antMatchers("/google").hasAuthority(SocialType.GOOGLE.getRoleType())
                 .anyRequest().authenticated()
@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/login"))
             .and()
                 .formLogin()
-                .successForwardUrl("/board/list")
+                .successForwardUrl("/")
             .and()
                 .logout()
                 .logoutUrl("/logout")

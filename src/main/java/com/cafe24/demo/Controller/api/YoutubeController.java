@@ -27,4 +27,10 @@ public class YoutubeController {
         return youtubeService.SearchOnYoutube(searchQuery);
     }
 
+    @RequestMapping("/playlist")
+    public @ResponseBody ArrayList<Map<String, String>> GetPlayListMine() {
+
+        return youtubeService.GetPlayListMine();
+    }
+
 }
