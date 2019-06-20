@@ -1,12 +1,13 @@
 package com.cafe24.demo.VO;
 
-public enum SocialType{
+public enum SocialType {
+    FACEBOOK("facebook"),
     GOOGLE("google");
 
     private final String ROLE_PREFIX = "ROLE_";
     private String name;
 
-    SocialType(String name){
+    SocialType(String name) {
         this.name = name;
     }
 
@@ -14,8 +15,7 @@ public enum SocialType{
 
     public String getValue() { return name; }
 
-    public boolean isEquals(String authority){
-        return this.getRoleType().equals(authority);
+    public boolean isEquals(String authority) {
+        return this.name.equals(authority);
     }
-
 }

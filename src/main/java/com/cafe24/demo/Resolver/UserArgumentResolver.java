@@ -29,6 +29,10 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     private UserDAO userDAO;
 
+    public UserArgumentResolver(UserDAO userDAO){
+        this.userDAO = userDAO;
+    }
+
     @Override
     public Object resolveArgument(MethodParameter arg0, ModelAndViewContainer arg1, NativeWebRequest arg2, WebDataBinderFactory arg3) throws Exception {
 

@@ -1,30 +1,42 @@
 package com.cafe24.demo.Service;
 
+import static com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.load;
+
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
+import com.google.api.client.extensions.java6.auth.oauth2.FileCredentialStore;
+import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTube.PlaylistItems;
+import com.google.api.services.youtube.YouTube.Playlists;
 import com.google.api.services.youtube.model.Playlist;
+import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
-import com.google.api.services.youtube.model.PlaylistSnippet;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.SearchResultSnippet;
 import com.google.api.services.youtube.model.Thumbnail;
+import com.google.common.collect.Lists;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -32,9 +44,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class YoutubeService {
 
-    private final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
+    private static HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
+
+    private static final File DATA_STORE_DIR = new File(System.getProperty("user.home"), "client_secret.json");
+
+    private GoogleAuthorizationCodeFlow flow;
 
     private static YouTube youtube;
 
@@ -96,58 +112,94 @@ public class YoutubeService {
         return output;
     }
 
-    
-    public ArrayList<Map<String, String>> GetPlayListMine(){
-        
+    public void GetPlayListMine() {
+
         List<Playlist> searchResultList = null;
-        PlaylistListResponse searchResponse = null;
+        PlaylistListResponse playlistresponse = null;
 
         try {
+            // Authorization.
+            Credential credential = authorize();
+      
+            // YouTube object used to make all API requests.
+            
+            youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("ChartCrawler").build();
 
-            youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, new HttpRequestInitializer() {
-                public void initialize(HttpRequest request) throws IOException {
-                }
-            }).setApplicationName("ChartCrawler").build();
-
-            YouTube.Playlists.List list = youtube.playlists().list("snippet,contentDetails");
-
-            /*
-             * It is important to set your developer key from the Google Developer Console
-             * for non-authenticated requests (found under the API Access tab at this link:
-             * c). This is good practice and increased your quota.
-             */
+            YouTube.Playlists.List list = youtube.playlists().list("snippet");
 
             String apiKey = apikey;
-            list.setKey(apikey);
-
-            
+            list.setKey(apiKey);
 
             list.setMine(true);
             
-            searchResponse = list.execute();
 
-            searchResultList = searchResponse.getItems();
-            System.out.println(searchResponse.toString());
+            playlistresponse = list.execute();
 
-        } catch (Throwable t) {
+            searchResultList = playlistresponse.getItems();
+            System.out.println(playlistresponse.toPrettyString());
+
+      
+          } catch (GoogleJsonResponseException e) {
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : " + e.getDetails().getMessage());
+            e.printStackTrace();
+          } catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
+            e.printStackTrace();
+          } catch (Throwable t) {
+            System.err.println("Throwable: " + t.getMessage());
             t.printStackTrace();
-        }
-
-        ArrayList<Map<String, String>> output = new ArrayList<>();
-
-        for (Playlist result : searchResponse.getItems()) {
-            PlaylistSnippet snippet = result.getSnippet();
-
-
-            Map<String, String> element = new HashMap<String, String>();
-            element.put("title", snippet.getTitle());
-            element.put("description", snippet.getDescription());
-
-            output.add(element);
-        }
-        return output;
+          }
     }
 
+    private static Credential authorize() throws Exception {
+        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube");
 
+        
+        try{
+            GoogleClientSecrets clientSecrets = load(JSON_FACTORY,
+                new InputStreamReader(Playlist.class.getResourceAsStream("/client_secret.json")));
+    
+            // Checks that the defaults have been replaced (Default = "Enter X here").
+            if (clientSecrets.getDetails().getClientId().startsWith("Enter")
+                || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
+
+                System.exit(1);
+            }
+        
+            // Set up file credential store.
+            FileCredentialStore credentialStore =
+                new FileCredentialStore(
+                    new File(System.getProperty("user.home"),
+                            ".credentials/youtube-api-playlistupdates.json"),
+                            JSON_FACTORY);
+            GoogleAuthorizationCodeFlow flow = 
+                new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
+                                                        JSON_FACTORY,
+                                                        clientSecrets,
+                                                        scopes)
+            .setCredentialStore(credentialStore).build();
+            
+            // Build the local server and bind it to port 9000
+            LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+        
+            // Authorize.
+            return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
+            
+        }catch (GoogleJsonResponseException e) {
+            System.err.println("There was a service error: " + e.getDetails().getCode() + " : " + e.getDetails().getMessage());
+            e.printStackTrace();
+          } catch (IOException e) {
+            System.err.println("IOException: " + e.getMessage());
+            e.printStackTrace();
+          } catch (Throwable t) {
+            System.err.println("Throwable: " + t.getMessage());
+            t.printStackTrace();
+          }finally{
+            
+        }
+        return null;
+    }
+
+    
     
 }

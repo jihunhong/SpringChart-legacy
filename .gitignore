@@ -31,3 +31,5 @@ HELP.md
 
 ## OAuth Credential ##
 /src/main/resources/google.yml
+
+client_secret.json

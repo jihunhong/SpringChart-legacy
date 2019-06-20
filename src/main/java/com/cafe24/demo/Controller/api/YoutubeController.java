@@ -29,8 +29,8 @@ public class YoutubeController {
 
     @RequestMapping("/playlist")
     public @ResponseBody ArrayList<Map<String, String>> GetPlayListMine() {
-
-        return youtubeService.GetPlayListMine();
+        youtubeService.GetPlayListMine();
+        return null;
     }
 
 }
