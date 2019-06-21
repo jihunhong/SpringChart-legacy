@@ -51,9 +51,9 @@ public class YoutubeService {
 
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-    private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.dir"), "./credential/client_secret.json");
+    private static java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.dir"), "./credential/client_secret.json");
 
-    private static FileDataStoreFactory DATA_STORE_FACTORY; 
+    private static FileDataStoreFactory DATA_STORE_FACTORY;
 
     private GoogleAuthorizationCodeFlow flow;
 
@@ -172,13 +172,14 @@ public class YoutubeService {
 
             System.exit(1);
           }
-            
+
             GoogleAuthorizationCodeFlow flow = 
                 new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
                                                         JSON_FACTORY,
                                                         clientSecrets,
                                                         scopes)
                                                         .setDataStoreFactory(new FileDataStoreFactory(DATA_STORE_DIR))
+                                                        .setAccessType("offline")
                                                         .build();
 
             LocalServerReceiver localServerReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
