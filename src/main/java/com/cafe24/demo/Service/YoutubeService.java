@@ -169,16 +169,10 @@ public class YoutubeService {
           
             if (clientSecrets.getDetails().getClientId().startsWith("Enter")
               || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
-            System.out.println(
-                "Enter Client ID and Secret from https://code.google.com/apis/console/?api=youtube"
-                + "into youtube-cmdline-playlistupdates-sample/src/main/resources/client_secrets.json");
+
             System.exit(1);
           }
-            // Set up file credential store.
-            FileCredentialStore credentialStore =
-                new FileCredentialStore(
-                  DATA_STORE_DIR,
-                            JSON_FACTORY);
+            
             GoogleAuthorizationCodeFlow flow = 
                 new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
                                                         JSON_FACTORY,
@@ -187,7 +181,9 @@ public class YoutubeService {
                                                         .setDataStoreFactory(new FileDataStoreFactory(DATA_STORE_DIR))
                                                         .build();
 
-            Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+            LocalServerReceiver localServerReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
+            
+            Credential credential = new AuthorizationCodeInstalledApp(flow, localServerReceiver).authorize("user");
             System.out.println("Credential Saved to " + DATA_STORE_DIR.getAbsolutePath());
 
             return credential;
