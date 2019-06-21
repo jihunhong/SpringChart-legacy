@@ -34,6 +34,7 @@ import com.google.api.services.youtube.YouTube.Playlists;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
+import com.google.api.services.youtube.model.PlaylistSnippet;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
@@ -49,7 +50,7 @@ public class YoutubeService {
 
     private static HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
-    private static final JsonFactory JSON_FACTORY = new JacksonFactory();
+    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
     private static java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.dir"), "./credential/client_secret.json");
 
@@ -61,6 +62,15 @@ public class YoutubeService {
 
     @Value("${apikey}")
     private String apikey = "";
+
+    static{
+      try{
+        DATA_STORE_FACTORY = new FileDataStoreFactory(DATA_STORE_DIR);
+      }catch(Throwable t){
+        t.printStackTrace();
+        System.exit(1);
+      }
+    }
 
     public ArrayList<Map<String, String>> SearchOnYoutube(String searchQuery) {
 
@@ -117,91 +127,73 @@ public class YoutubeService {
         return output;
     }
 
-    public void GetPlayListMine() {
+    public ArrayList<Map<String, String>> GetPlayListMine() throws IOException {
 
         List<Playlist> searchResultList = null;
         PlaylistListResponse playlistresponse = null;
 
-        try {
-            // Authorization.
-            Credential credential = authorize();
-      
-            // YouTube object used to make all API requests.
-            
-            youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("ChartCrawler").build();
+        // Authorization.
+        Credential credential = authorize();
+  
+        // YouTube object used to make all API requests.
+        
+        youtube = new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName("ChartCrawler").build();
 
-            YouTube.Playlists.List list = youtube.playlists().list("snippet");
+        YouTube.Playlists.List list = youtube.playlists().list("snippet");
 
-            String apiKey = apikey;
-            list.setKey(apiKey);
+        list.setMine(true);
+        
 
-            list.setMine(true);
-            
+        playlistresponse = list.execute();
 
-            playlistresponse = list.execute();
+        searchResultList = playlistresponse.getItems();
+        System.out.println(playlistresponse.toPrettyString());
 
-            searchResultList = playlistresponse.getItems();
-            System.out.println(playlistresponse.toPrettyString());
+        ArrayList<Map<String, String>> output = new ArrayList<>();
+        Thumbnail thumbnail;
 
-      
-          } catch (GoogleJsonResponseException e) {
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : " + e.getDetails().getMessage());
-            e.printStackTrace();
-          } catch (IOException e) {
-            System.err.println("IOException: " + e.getMessage());
-            e.printStackTrace();
-          } catch (Exception e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+        for(Playlist result : playlistresponse.getItems()) {
+          PlaylistSnippet snippet = result.getSnippet();
+
+          thumbnail = result.getSnippet().getThumbnails().getHigh();
+
+          Map<String, String> element = new HashMap<String, String>();
+          element.put("title", snippet.getTitle());
+          element.put("reg_date", snippet.getPublishedAt().toString());
+          element.put("thumbnail", thumbnail.getUrl());
+          element.put("Id", result.getId());
+          
+          output.add(element);
+        }
+        return output;
     }
-    }
 
-    private static Credential authorize() throws Exception {
-        List<String> scopes = Arrays.asList(YouTubeScopes.YOUTUBE);
+    private static Credential authorize() throws IOException {
+        List<String> scopes = Arrays.asList(YouTubeScopes.YOUTUBE_FORCE_SSL);
 
         InputStream in = null;
         
-        try{
-            in = YoutubeService.class.getResourceAsStream("/client_secret.json");
-            System.out.println(in);
-            GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
-            new InputStreamReader(in));
-          
-            if (clientSecrets.getDetails().getClientId().startsWith("Enter")
-              || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
+        
+        in = YoutubeService.class.getResourceAsStream("/client_secret.json");
+        System.out.println(in);
+        GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
+      
+        GoogleAuthorizationCodeFlow flow = 
+            new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
+                                                    JSON_FACTORY,
+                                                    clientSecrets,
+                                                    scopes)
+                                                    .setDataStoreFactory(DATA_STORE_FACTORY)
+                                                    .setAccessType("offline")
+                                                    .build();
 
-            System.exit(1);
-          }
+        LocalServerReceiver localServerReceiver = new LocalServerReceiver.Builder().setPort(9000).build();
+        
+        Credential credential = new AuthorizationCodeInstalledApp(flow, localServerReceiver).authorize("user");
+        System.out.println("Credential Saved to " + DATA_STORE_DIR.getAbsolutePath());
 
-            GoogleAuthorizationCodeFlow flow = 
-                new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
-                                                        JSON_FACTORY,
-                                                        clientSecrets,
-                                                        scopes)
-                                                        .setDataStoreFactory(new FileDataStoreFactory(DATA_STORE_DIR))
-                                                        .setAccessType("offline")
-                                                        .build();
-
-            LocalServerReceiver localServerReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
-            
-            Credential credential = new AuthorizationCodeInstalledApp(flow, localServerReceiver).authorize("user");
-            System.out.println("Credential Saved to " + DATA_STORE_DIR.getAbsolutePath());
-
-            return credential;
-            
-        }catch (GoogleJsonResponseException e) {
-            System.err.println("There was a service error: " + e.getDetails().getCode() + " : " + e.getDetails().getMessage());
-            e.printStackTrace();
-          } catch (IOException e) {
-            System.err.println("IOException: " + e.getMessage());
-            e.printStackTrace();
-          } catch (Throwable t) {
-            System.err.println("Throwable: " + t.getMessage());
-            t.printStackTrace();
-          }finally{
-            
-        }
-        return null;
+        return credential;
+        
     }
 
     

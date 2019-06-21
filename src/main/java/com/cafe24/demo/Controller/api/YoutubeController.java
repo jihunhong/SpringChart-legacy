@@ -1,5 +1,6 @@
 package com.cafe24.demo.Controller.api;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -28,9 +29,8 @@ public class YoutubeController {
     }
 
     @RequestMapping("/playlist")
-    public @ResponseBody ArrayList<Map<String, String>> GetPlayListMine() {
-        youtubeService.GetPlayListMine();
-        return null;
+    public @ResponseBody ArrayList<Map<String, String>> GetPlayListMine() throws IOException {
+        return youtubeService.GetPlayListMine();
     }
 
 }
