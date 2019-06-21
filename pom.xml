@@ -61,11 +61,6 @@
 			<artifactId>google-api-services-youtube</artifactId>
 			<version>v3-rev212-1.25.0</version>
 		</dependency>
-		<dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson2</artifactId>
-			<version>1.12.0-beta</version>
-		  </dependency>
 		  <dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>

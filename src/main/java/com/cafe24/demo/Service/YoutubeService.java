@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,8 +25,10 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-
+import com.google.api.client.util.Data;
+import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTubeScopes;
 import com.google.api.services.youtube.YouTube.PlaylistItems;
 import com.google.api.services.youtube.YouTube.Playlists;
 import com.google.api.services.youtube.model.Playlist;
@@ -48,7 +51,9 @@ public class YoutubeService {
 
     private static final JsonFactory JSON_FACTORY = new JacksonFactory();
 
-    private static final File DATA_STORE_DIR = new File(System.getProperty("user.home"), "client_secret.json");
+    private static final java.io.File DATA_STORE_DIR = new java.io.File(System.getProperty("user.dir"), "./credential/client_secret.json");
+
+    private static FileDataStoreFactory DATA_STORE_FACTORY; 
 
     private GoogleAuthorizationCodeFlow flow;
 
@@ -145,45 +150,47 @@ public class YoutubeService {
           } catch (IOException e) {
             System.err.println("IOException: " + e.getMessage());
             e.printStackTrace();
-          } catch (Throwable t) {
-            System.err.println("Throwable: " + t.getMessage());
-            t.printStackTrace();
-          }
+          } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
     }
 
     private static Credential authorize() throws Exception {
-        List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube");
+        List<String> scopes = Arrays.asList(YouTubeScopes.YOUTUBE);
 
+        InputStream in = null;
         
         try{
-            GoogleClientSecrets clientSecrets = load(JSON_FACTORY,
-                new InputStreamReader(Playlist.class.getResourceAsStream("/client_secret.json")));
-    
-            // Checks that the defaults have been replaced (Default = "Enter X here").
+            in = YoutubeService.class.getResourceAsStream("/client_secret.json");
+            System.out.println(in);
+            GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY,
+            new InputStreamReader(in));
+          
             if (clientSecrets.getDetails().getClientId().startsWith("Enter")
-                || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
-
-                System.exit(1);
-            }
-        
+              || clientSecrets.getDetails().getClientSecret().startsWith("Enter ")) {
+            System.out.println(
+                "Enter Client ID and Secret from https://code.google.com/apis/console/?api=youtube"
+                + "into youtube-cmdline-playlistupdates-sample/src/main/resources/client_secrets.json");
+            System.exit(1);
+          }
             // Set up file credential store.
             FileCredentialStore credentialStore =
                 new FileCredentialStore(
-                    new File(System.getProperty("user.home"),
-                            ".credentials/youtube-api-playlistupdates.json"),
+                  DATA_STORE_DIR,
                             JSON_FACTORY);
             GoogleAuthorizationCodeFlow flow = 
                 new GoogleAuthorizationCodeFlow.Builder(HTTP_TRANSPORT, 
                                                         JSON_FACTORY,
                                                         clientSecrets,
                                                         scopes)
-            .setCredentialStore(credentialStore).build();
-            
-            // Build the local server and bind it to port 9000
-            LocalServerReceiver localReceiver = new LocalServerReceiver.Builder().setPort(8080).build();
-        
-            // Authorize.
-            return new AuthorizationCodeInstalledApp(flow, localReceiver).authorize("user");
+                                                        .setDataStoreFactory(new FileDataStoreFactory(DATA_STORE_DIR))
+                                                        .build();
+
+            Credential credential = new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
+            System.out.println("Credential Saved to " + DATA_STORE_DIR.getAbsolutePath());
+
+            return credential;
             
         }catch (GoogleJsonResponseException e) {
             System.err.println("There was a service error: " + e.getDetails().getCode() + " : " + e.getDetails().getMessage());
