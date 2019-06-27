@@ -158,9 +158,9 @@
           </div>
         </div>
 
-        <div class="col-sm-9 col-lg-9 chart">
-
-                <div class="col-sm-12 col-lg-12">
+        <div class="col-lg-9 col-md-11 col-sm-11 col-12 chart">
+          <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
 
                     <ul class="list-group chart_list">
                       
@@ -183,18 +183,16 @@
                             </div>
                           </div>
 
-                        <li class="list-group-item"
-                        th:each="music : ${list}">
-                            <span class="music_rank col-lg-1" th:text="${music.rank}">RANK NUMBER</span>
-                            <span class="music_title col-lg-7" th:text="${music.title}">Default Title</span>
-                            <span class="music_title col-lg-2" th:text="${music.artist}">Default Aritst</span>
-                            <!-- <span class="music_title col-lg-2" th:text="${music.album}">Default Album</span> -->
-                            <span class="music_link col-lg-1" data-toggle="modal" data-target="#exampleModalPreview">
+                        <li class="list-group-item" th:each="music : ${list}">
+                            <span class="music_rank   col-lg-1 col-md-1 col-sm-1 col-1" th:text="${music.rank}">RANK NUMBER</span>
+                            <span class="music_title  col-lg-6 col-md-6 col-sm-6 col-6" th:text="${music.title}">Default Title</span>
+                            <span class="music_artist col-lg-3 col-md-3 col-sm-3 col-3" th:text="${music.artist}">Default Aritst</span>
+                            <span class="music_link   col-lg-1 col-md-1 col-sm-1 col-1" data-toggle="modal" data-target="#exampleModalPreview">
                               <a class="youtube">
                                 <i class="fab fa-youtube"></i>
                               </a>
                             </span>
-                            <span class="add_button col-lg-1">
+                            <span class="add_button col-lg-1 col-md-1 col-sm-1 col-1">
                               <a class="playlist_add">
                                 <i class="fab fa fa-share-square"></i>
                               </a>
@@ -203,7 +201,7 @@
                     </ul>
                 </div>
           </div>
-
+        </div>
 
       </div>
 
