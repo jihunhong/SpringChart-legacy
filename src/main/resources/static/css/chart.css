@@ -24,26 +24,48 @@ span.music_rank {
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
     font-weight: 800;
+    padding: 15px 0px;
+    text-align: center;
 }
 
-span.music_title{
-    font-family: 'Poppins', sans-serif;
-    font-size: 22px;
-    text-overflow: ellipsis;
-    font-weight: 800;
+@media (max-width: 992px){
+    span.album_img{
+        display:none;
+    }
 }
-span.music_artist{
+
+p.music_title{
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
     text-overflow: ellipsis;
     font-weight: 800;
+    margin:0px;
+}
+
+.album_img{
+    width:58px;
+    height:58px;
+}
+
+p.music_artist{
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    text-overflow: ellipsis;
+    font-weight: 800;
+    margin: 0px;
+}
+
+span.music_link, .add_button{
+    padding: 15px 0px;
+    text-align: center;
 }
 
 .preview_header{
     visibility: visible;
     animation-name: fadeIn;
     background-color: #00000078;
-    padding: 25px 10px 25px 10px;
+    padding: 25px 10px;
+    margin-top: 10%;
 }
 
 .preview_top1_text{
@@ -66,7 +88,7 @@ span.music_artist{
 
 
 .chart{
-    margin: 50% auto 40px auto !important;
+    margin: 10% auto 40px auto !important;
     width: unset !important;
 }
 
@@ -78,14 +100,14 @@ span.music_artist{
 
 @media (max-width: 992px){
     .list-group-item span {
-        font-size: 12px;
+        font-size: 21px;
         padding-left : 5px; 
     }
 }
 
 @media (max-width: 992px){
     .list-group-item span a i{
-        font-size: 12px;
+        font-size: 21px;
     }
 }
 

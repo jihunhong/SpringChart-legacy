@@ -108,102 +108,106 @@
     
         </div>
       </nav>
-      <div class="view" style="overflow:unset;">
-
-        <!--Video source-->
-        <video class="video-intro" autoplay="true" muted="" id="video_bg" loop="loop" style="position:fixed;">
-          <source src="/MDB/video.mp4" type="video/mp4">
-        </video>
-
-        
-        <div class="mask rgba-black-light d-flex justify-content-center align-items-center" style="position:fixed;">
-          <!-- Top1 Contents Preview -->
-          <div class="container">
 
 
-            <div class="row preview_header d-flex h-100 justify-content-center align-items-center wow fadeIn" style="background-size:cover;">
+  <div class="container">
+      
+      
+    <div class="row preview_header d-flex h-100 justify-content-center align-items-center wow fadeIn"
+      style="background-size:cover;">
 
-              <div class="col-md-10 mb-4 white-text text-center text-md-left">
-  
-                <h1 class="display-4 font-weight-bold">Real Time in <img th:src="'/img/' + ${name} + '.png'" alt="로고 이미지" id="melon_logo"> Chart</h1>
-  
-                <hr class="hr-light">
-  
-                <div>
-                  <img class="preview_one_img" src="/img/number-one.svg"/>
-                  <p class="preview_top1_text" th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + ${list[0].album}">
-                    Top 1 Music Title <br> Artist Name <br> Album Name
-                  </p>
+      <div class="col-md-10 mb-4 white-text text-center text-md-left">
 
-                </div>
-  
-                <p class="mb-4 d-none d-md-block">
-                  <!-- music description -->
-                  <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong> 
-                </p>
-  
-                <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
-                  <i class="fab fa-youtube red-text ml-2"></i>
-                </a>
-                <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
-                  <i class="fas fa-download red-text ml-2"></i>
-                </a>
-  
-              </div>
-  
-            </div>
+        <h1 class="display-4 font-weight-bold">Real Time in <img th:src="'/img/' + ${name} + '.png'"
+            alt="로고 이미지" id="melon_logo"> Chart</h1>
 
-  
-          </div>
+        <hr class="hr-light">
+
+        <div>
+          <img class="preview_one_img" src="/img/number-one.svg" />
+          <p class="preview_top1_text"
+            th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + ${list[0].album}">
+            Top 1 Music Title <br> Artist Name <br> Album Name
+          </p>
+
         </div>
 
-        <div class="col-lg-9 col-md-11 col-sm-11 col-12 chart">
-          <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        <p class="mb-4 d-none d-md-block">
+          <!-- music description -->
+          <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong>
+        </p>
 
-                    <ul class="list-group chart_list">
-                      
-                        <div class="modal fade right" id="exampleModalPreview"  role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" data-backdrop='false'>
-                            <div class="modal-dialog modal-lg modal-side modal-bottom-right" role="document">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalPreviewLabel" style="font-size: 0.9rem;"><strong>Modal title</strong></h5>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                  </button>
-                                </div>
-                                <div class="modal-body mb-0 p-0">
-                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                                        
-                                    </div>
-                                </div>
-                                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                              </div>
-                            </div>
-                          </div>
-
-                        <li class="list-group-item" th:each="music : ${list}">
-                            <span class="music_rank   col-lg-1 col-md-1 col-sm-1 col-1" th:text="${music.rank}">RANK NUMBER</span>
-                            <span class="music_title  col-lg-6 col-md-6 col-sm-6 col-6" th:text="${music.title}">Default Title</span>
-                            <span class="music_artist col-lg-3 col-md-3 col-sm-3 col-3" th:text="${music.artist}">Default Aritst</span>
-                            <span class="music_link   col-lg-1 col-md-1 col-sm-1 col-1" data-toggle="modal" data-target="#exampleModalPreview">
-                              <a class="youtube">
-                                <i class="fab fa-youtube"></i>
-                              </a>
-                            </span>
-                            <span class="add_button col-lg-1 col-md-1 col-sm-1 col-1">
-                              <a class="playlist_add">
-                                <i class="fab fa fa-share-square"></i>
-                              </a>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-          </div>
-        </div>
+        <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
+          <i class="fab fa-youtube red-text ml-2"></i>
+        </a>
+        <a target="_blank" href="#" class="btn btn-outline-white waves-effect waves-light">Sample Button
+          <i class="fas fa-download red-text ml-2"></i>
+        </a>
 
       </div>
+
+    </div>
+      
+      
+  </div>
+
+  <div class="col-xl-10 col-lg-11 col-md-11 col-sm-12 col-12 chart">
+    <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+              <ul class="list-group chart_list">
+                
+                  <div class="modal fade right" id="exampleModalPreview"  role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true" data-backdrop='false'>
+                      <div class="modal-dialog modal-lg modal-side modal-bottom-right" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalPreviewLabel" style="font-size: 0.9rem;"><strong>Modal title</strong></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body mb-0 p-0">
+                              <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                  
+                              </div>
+                          </div>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  <li class="list-group-item" th:each="music : ${list}">
+                      <span class="music_rank   col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1" th:text="${music.rank}">RANK NUMBER</span>
+                      <span class="album_img">
+                        <img th:src="@{${music.url}}" width=58 height=58/>
+                      </span>
+
+                      <span class="music_info   col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                        <div>
+                          <p class="music_title" th:text="${music.title}">default title</p>
+                          <p class="music_artist" th:text="${music.artist}">default artist name</p>
+                        </div>
+                      </span>
+                      
+                      <span class="music_link   offset-xl-2 offset-lg-2 offset-md-3 offset-3 col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1" data-toggle="modal" data-target="#exampleModalPreview">
+                        <a class="youtube">
+                          <i class="fab fa-youtube"></i>
+                        </a>
+                      </span>
+                      <span class="add_button   col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                        <a class="playlist_add">
+                          <i class="fab fa fa-share-square"></i>
+                        </a>
+                      </span>
+                  </li>
+              </ul>
+          </div>
+    </div>
+  </div>
+
+
 
 
         
