@@ -28,13 +28,13 @@ public class JsoupUtils {
 			Elements artist_names = document.getElementsByClass("artist");
 			// 가수 이름
 
-			Elements album_imgs = document.getElementsByClass("image_typeAll");
+			Elements album_imgs = document.getElementsByClass("thumbnail");
 			// 앨범 이미지
 
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 50; i++) {
 
-				String title = music_titles.get(i).text();
-				String artist = artist_names.get(i).getElementsByTag("span").text();
+				String title = music_titles.get(i+3).text();
+				String artist = artist_names.get(i + 1).select("p").select("a").get(0).text();
 
 				String img_url = album_imgs.get(i).select("img").attr("src").toString();
 
@@ -123,18 +123,24 @@ public class JsoupUtils {
 
 			Elements album_names = document.getElementsByClass("albumtitle ellipsis");
 			// 앨범 이름
+
+			Elements album_imgs = document.getElementsByClass("cover");
+			// 앨범 이미지
+
 			for (int i = 0; i < 50; i++) {
 
 				String title = music_titles.get(i).text();
 				String artist = artist_names.get(i + 5).text();
 				String album = album_names.get(i).text();
 
+				String img_url = album_imgs.get(i).select("img").attr("src").toString();
 				
 				Music music = new Music();
 				music.setRank(i + 1);
 				music.setTitle(title);
 				music.setArtist(artist);
 				music.setAlbum(album);
+				music.setUrl(img_url);
 
 				list.add(music);
 			}

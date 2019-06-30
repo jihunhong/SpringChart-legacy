@@ -175,24 +175,13 @@ public class JsoupParsingTest {
 			Elements artist_names = document.getElementsByClass("artist");
 			// 가수 이름
 
-			for (int i = 0; i < 1; i++) {
+			for (int i = 0; i < 3; i++) {
 
 				String title = music_titles.get(i + 3).text();
-				String artist = artist_names.get(i + 1).text();
+				String artist = artist_names.get(i + 1).select("p").select("a").get(0).text();
 
 				music_info.put(title, artist);
 				System.out.println(title + " : " + artist);
-				// 너에게 못했던 내 마지막 말은 : 다비치
-				// AH YEAH (아예) : WINNER
-				// 비가 오잖아 : 소유 (SOYOU) 소유 (SOYOU)
-				// 주저하는 연인들을 위해 : 잔나비
-				// 작은 것들을 위한 시 (Boy With Luv) (feat. Halsey) : 방탄소년단 방탄소년단
-				// FANCY : TWICE (트와이스)
-				// 다섯 번째 계절 (SSFWL) : 오마이걸(OH MY GIRL)
-				// 2002 : Anne-Marie(앤 마리)
-				// 뜨거운 여름밤은 가고 남은 건 볼품없지만 : 잔나비
-				// bad guy : Billie Eilish(빌리 아일리시)
-				// 사랑에 연습이 있었다면 (Prod. 2soo) : 임재현
 			}
 
 		} catch (NullPointerException e) {

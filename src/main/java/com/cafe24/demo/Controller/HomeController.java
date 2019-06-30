@@ -35,20 +35,27 @@ class HomeController {
 
         ArrayList<Map<String, String>> output = new ArrayList<>();
         output = youtubeService.SearchOnYoutube(searchQuery);
+        model.addAttribute("output", output);
 
         model.addAttribute("list", melon);
         model.addAttribute("name", "melon");
-        model.addAttribute("output", output);
+        
         
         return "index";
     }
 
     @RequestMapping(value = "/genie")
-    public String Genie(Model model){
+    public String Genie(Model model) throws IOException {
 
         List<Music> genie = new ArrayList<>();
 
         genie = utils.getGeineChart();
+
+        String searchQuery = genie.get(0).getTitle() + genie.get(0).getArtist();
+
+        ArrayList<Map<String, String>> output = new ArrayList<>();
+        output = youtubeService.SearchOnYoutube(searchQuery);
+        model.addAttribute("output", output);
 
         model.addAttribute("list", genie);
         model.addAttribute("name", "genie");
@@ -57,12 +64,18 @@ class HomeController {
     }
 
     @RequestMapping(value = "/bugs")
-    public String Bugs(Model model){
+    public String Bugs(Model model) throws IOException {
 
         List<Music> bugs = new ArrayList<>();
 
         bugs = utils.getBugsChart();
 
+        String searchQuery = bugs.get(0).getTitle() + ' ' + bugs.get(0).getArtist();
+
+        ArrayList<Map<String, String>> output = new ArrayList<>();
+        output = youtubeService.SearchOnYoutube(searchQuery);
+
+        model.addAttribute("output", output);
         model.addAttribute("list", bugs);
         model.addAttribute("name", "bugs");
 
