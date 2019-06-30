@@ -1,4 +1,58 @@
-.logo{
+body{
+    background-color: #f0f0f0;
+}
+body > div.row{
+    margin: 0px;
+    background-image: url(../img/chart_bg.svg);
+    background-size: cover;
+}
+
+body > div.row > .row{
+    margin: 0px;
+}
+
+div.font-box{
+    border-radius: 4px;
+    position: absolute;
+    width: 740px;
+    height: 417px;
+    background-color: rgba(0, 0, 0, 0.49);
+    overflow-x: hidden;
+}
+
+div.font-box > .top_title{
+    color: white;
+    bottom: 47px;
+    left: 27px;
+    position: absolute;
+    font-size: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    white-space: nowrap;
+    width: 645px;
+}
+
+div.font-box > .top_author{
+    color: white;
+    bottom: 20px;
+    left: 33px;
+    position: absolute;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+div.logo{
+    border-radius: 4px;
+    width: 740px;
+    height: 417px;
+    background-size: 162%;
+    background-position-y: -136px;
+    background-position-x: -202px;
+    margin: 0;
+}
+
+strong.logo{
     font-family: 'Poppins', sans-serif;
     font-size: 22px;
     font-weight: 800;
@@ -65,7 +119,7 @@ span.music_link, .add_button{
     animation-name: fadeIn;
     background-color: #00000078;
     padding: 25px 10px;
-    margin-top: 10%;
+    padding-top: 6%;
 }
 
 .preview_top1_text{
@@ -86,10 +140,19 @@ span.music_link, .add_button{
 
 }
 
+.dummy_text{
+    padding:15px;
+}
+
 
 .chart{
-    margin: 10% auto 40px auto !important;
+    margin: 71px auto 40px auto !important;
     width: unset !important;
+}
+
+.chart_list > li{
+    margin-bottom:5px;
+    border-radius: 5px;
 }
 
 @media (max-width: 992px){

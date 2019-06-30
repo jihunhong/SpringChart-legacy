@@ -23,7 +23,8 @@ public class YoutubeController {
     YoutubeService youtubeService;
 
     @RequestMapping("/search")
-    public @ResponseBody ArrayList<Map<String, String>> SearchOnYoutube(@RequestParam(value = "q") String searchQuery) {
+    public @ResponseBody ArrayList<Map<String, String>> SearchOnYoutube(@RequestParam(value = "q") String searchQuery)
+            throws IOException {
 
         return youtubeService.SearchOnYoutube(searchQuery);
     }

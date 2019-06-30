@@ -110,7 +110,7 @@
       </nav>
 
 
-  <div class="container">
+  <div class="row">
       
       
     <div class="row preview_header d-flex h-100 justify-content-center align-items-center wow fadeIn"
@@ -123,16 +123,16 @@
 
         <hr class="hr-light">
 
-        <div>
-          <img class="preview_one_img" src="/img/number-one.svg" />
-          <p class="preview_top1_text"
-            th:utext="${list[0].title} + '<br>' + ${list[0].artist} + '<br>' + ${list[0].album}">
-            Top 1 Music Title <br> Artist Name <br> Album Name
-          </p>
-
+        <div class="col-xl-7 top_music">
+          <div class="font-box">
+            <p class="top_title" th:text="${output[0].title}"></p>
+            <p class="top_author" th:text="${list[0].artist}"></p>
+          </div>
+          <div class="logo" th:style="'background-image:url(' + ${output[0].thumbnail} + ');'">
+          </div>
         </div>
 
-        <p class="mb-4 d-none d-md-block">
+        <p class="mb-4 d-none d-md-block dummy_text">
           <!-- music description -->
           <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
             industry's standard dummy text ever since the 1500s,

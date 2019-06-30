@@ -31,6 +31,8 @@ import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
 import com.google.api.services.youtube.YouTube.PlaylistItems;
 import com.google.api.services.youtube.YouTube.Playlists;
+import com.google.api.services.youtube.model.Channel;
+import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
@@ -72,10 +74,13 @@ public class YoutubeService {
       }
     }
 
-    public ArrayList<Map<String, String>> SearchOnYoutube(String searchQuery) {
+    public ArrayList<Map<String, String>> SearchOnYoutube(String searchQuery) throws IOException {
 
         List<SearchResult> searchResultList = null;
         SearchListResponse searchResponse = null;
+        
+        List<Channel> chaResultList = null;
+        ChannelListResponse chaResponse = null;
 
         try {
 
@@ -98,17 +103,20 @@ public class YoutubeService {
             search.setQ(searchQuery);
             // 검색어 설정
 
-            search.setFields("items(id/kind,id/videoId,snippet/title,snippet/thumbnails/high/url)");
+            search.setFields("items(id/kind,id/videoId,snippet/title, snippet/thumbnails/high/url)");
             search.setMaxResults((long) 3);
             searchResponse = search.execute();
 
             searchResultList = searchResponse.getItems();
-            System.out.println(searchResponse.toString());
+            
 
         } catch (Throwable t) {
             t.printStackTrace();
         }
         ResourceId rId;
+        // YouTube.Channels.List cha = youtube.channels().list("id,contentDetails");
+        // cha.setKey(apikey);
+
         Thumbnail thumbnail;
         ArrayList<Map<String, String>> output = new ArrayList<>();
 
@@ -116,12 +124,20 @@ public class YoutubeService {
             SearchResultSnippet snippet = result.getSnippet();
             rId = result.getId();
 
+            // cha.setPart("id");
+            // cha.setId(snippet.getChannelId());
+            // cha.setFields("items/snippet");
+            
+            // chaResponse = cha.execute();
+            // chaResultList = chaResponse.getItems();
+
             thumbnail = result.getSnippet().getThumbnails().getHigh();
 
             Map<String, String> element = new HashMap<String, String>();
             element.put("title", snippet.getTitle());
             element.put("url", rId.getVideoId());
             element.put("thumbnail", thumbnail.getUrl());
+            // element.put("author", chaResultList.get(0).getSnippet().getTitle());
             output.add(element);
         }
         return output;
@@ -147,7 +163,7 @@ public class YoutubeService {
         playlistresponse = list.execute();
 
         searchResultList = playlistresponse.getItems();
-        System.out.println(playlistresponse.toPrettyString());
+        
 
         ArrayList<Map<String, String>> output = new ArrayList<>();
         Thumbnail thumbnail;
