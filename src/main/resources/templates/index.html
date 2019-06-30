@@ -125,12 +125,31 @@
 
         <div class="col-xl-7 top_music">
           <div class="font-box">
-            <p class="top_title" th:text="${output[0].title}"></p>
+            <p class="top_title" th:text="${list[0].title}"></p>
             <p class="top_author" th:text="${list[0].artist}"></p>
           </div>
           <div class="logo" th:style="'background-image:url(' + ${output[0].thumbnail} + ');'">
           </div>
         </div>
+
+        <div class="col-xl-5 top_music">
+          <div class="col-xl-12 sm-logo" th:style="'background-image:url(' + ${output[3].thumbnail} + ');'">
+          </div>
+          <div class="sm-font-box">
+            <p class="top_title" th:text="${list[1].title}"></p>
+            <p class="top_author" th:text="${list[1].artist}"></p>
+          </div>
+        </div>
+
+        <div class="col-xl-5 top_music">          
+          <div class="col-xl-12 sm-logo" th:style="'background-image:url(' + ${output[6].thumbnail} + ');'">
+          </div>
+          <div class="sm-font-box">
+            <p class="top_title" th:text="${list[2].title}"></p>
+            <p class="top_author" th:text="${list[2].artist}"></p>
+          </div>
+        </div>
+
 
         <p class="mb-4 d-none d-md-block dummy_text">
           <!-- music description -->

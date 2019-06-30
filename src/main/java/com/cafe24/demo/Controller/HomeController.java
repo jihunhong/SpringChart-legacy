@@ -31,10 +31,13 @@ class HomeController {
         
         melon = utils.getMelonChart();
 
-        String searchQuery = melon.get(0).getTitle() + melon.get(0).getArtist();
-
         ArrayList<Map<String, String>> output = new ArrayList<>();
-        output = youtubeService.SearchOnYoutube(searchQuery);
+        
+        for (int i=0; i<3; i++){
+            String searchQuery = melon.get(i).getTitle() + melon.get(i).getArtist();
+            output.addAll(youtubeService.SearchOnYoutube(searchQuery));
+        }
+        
         model.addAttribute("output", output);
 
         model.addAttribute("list", melon);
@@ -51,12 +54,14 @@ class HomeController {
 
         genie = utils.getGeineChart();
 
-        String searchQuery = genie.get(0).getTitle() + genie.get(0).getArtist();
-
         ArrayList<Map<String, String>> output = new ArrayList<>();
-        output = youtubeService.SearchOnYoutube(searchQuery);
-        model.addAttribute("output", output);
 
+        for (int i = 0; i < 3; i++) {
+            String searchQuery = genie.get(i).getTitle() + genie.get(i).getArtist();
+            output.addAll(youtubeService.SearchOnYoutube(searchQuery));
+        }
+
+        model.addAttribute("output", output);
         model.addAttribute("list", genie);
         model.addAttribute("name", "genie");
 
@@ -70,10 +75,14 @@ class HomeController {
 
         bugs = utils.getBugsChart();
 
-        String searchQuery = bugs.get(0).getTitle() + ' ' + bugs.get(0).getArtist();
-
         ArrayList<Map<String, String>> output = new ArrayList<>();
-        output = youtubeService.SearchOnYoutube(searchQuery);
+
+        for (int i = 0; i < 3; i++) {
+            String searchQuery = bugs.get(i).getTitle() + bugs.get(i).getArtist();
+            output.addAll(youtubeService.SearchOnYoutube(searchQuery));
+        }
+
+        model.addAttribute("output", output);
 
         model.addAttribute("output", output);
         model.addAttribute("list", bugs);
