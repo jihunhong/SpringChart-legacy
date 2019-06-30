@@ -140,7 +140,7 @@ public class YoutubeService {
             // element.put("author", chaResultList.get(0).getSnippet().getTitle());
             output.add(element);
         }
-        return output;
+        return OfficialSort(output);
     }
 
     public ArrayList<Map<String, String>> GetPlayListMine() throws IOException {
@@ -212,6 +212,15 @@ public class YoutubeService {
         
     }
 
+
+    public ArrayList<Map<String, String>> OfficialSort(ArrayList<Map<String, String>> output){
+        for (int i = 2; i >= 0; i--) {
+            if (output.get(i).get("title").contains("official") || output.get(i).get("title").contains("MV") || output.get(i).get("title").contains("M/V")) {
+                output.set(0, output.get(i));
+            }
+        }
+        return output;
+    }
     
     
 }
