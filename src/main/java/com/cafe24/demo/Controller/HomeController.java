@@ -34,7 +34,7 @@ class HomeController {
         ArrayList<Map<String, String>> output = new ArrayList<>();
         
         for (int i=0; i<3; i++){
-            String searchQuery = melon.get(i).getTitle() + melon.get(i).getArtist();
+            String searchQuery = melon.get(i).getTitle() + ' ' + melon.get(i).getArtist();
             output.addAll(youtubeService.SearchOnYoutube(searchQuery));
         }
         

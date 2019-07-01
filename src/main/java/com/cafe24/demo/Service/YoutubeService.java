@@ -215,8 +215,9 @@ public class YoutubeService {
 
     public ArrayList<Map<String, String>> OfficialSort(ArrayList<Map<String, String>> output){
         for (int i = 2; i >= 0; i--) {
-            if (output.get(i).get("title").contains("official") || output.get(i).get("title").contains("MV") || output.get(i).get("title").contains("M/V")) {
+            if (output.get(i).get("title").contains("Official") || output.get(i).get("title").contains("MV") || output.get(i).get("title").contains("M/V")) {
                 output.set(0, output.get(i));
+                break;
             }
         }
 
