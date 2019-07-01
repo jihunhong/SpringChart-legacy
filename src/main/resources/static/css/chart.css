@@ -9,6 +9,7 @@ body > div.row{
 
 body > div.row > .row{
     margin: 0px;
+    width: 100%;
 }
 
 div.font-box{
