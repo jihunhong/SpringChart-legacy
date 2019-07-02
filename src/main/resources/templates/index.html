@@ -123,7 +123,7 @@
 
         <hr class="hr-light">
 
-        <div class="col-xl-7 top_music">
+        <div class="col-xl-7 top_music"  data-toggle="modal" data-target="#exampleModalPreview">
           <div class="font-box">
             <p class="top_title" th:text="${list[0].title}"></p>
             <p class="top_author" th:text="${list[0].artist}"></p>
@@ -132,7 +132,7 @@
           </div>
         </div>
 
-        <div class="col-xl-5 top_music">
+        <div class="col-xl-5 top_music"  data-toggle="modal" data-target="#exampleModalPreview">
           <div class="col-xl-12 sm-logo" th:style="'background-image:url(' + ${output[3].thumbnail} + ');'">
           </div>
           <div class="sm-font-box">
@@ -141,7 +141,7 @@
           </div>
         </div>
 
-        <div class="col-xl-5 top_music">          
+        <div class="col-xl-5 top_music"  data-toggle="modal" data-target="#exampleModalPreview">          
           <div class="col-xl-12 sm-logo" th:style="'background-image:url(' + ${output[6].thumbnail} + ');'">
           </div>
           <div class="sm-font-box">

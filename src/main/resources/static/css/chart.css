@@ -17,13 +17,15 @@ div.font-box{
     position: absolute;
     width: 95.4%;
     height: 417px;
-    background-color: rgba(0, 0, 0, 0.49);
+    /* background-color: rgba(0, 0, 0, 0.49); */
     overflow-x: hidden;
 }
 
 div.font-box > .top_title{
+    padding: 5px;
+    background-color: #00000073;
     color: white;
-    bottom: 47px;
+    bottom: 55px;
     left: 27px;
     position: absolute;
     font-size: 36px;
@@ -31,10 +33,11 @@ div.font-box > .top_title{
     text-overflow: ellipsis;
     font-weight: 600;
     white-space: nowrap;
-    width: 645px;
 }
 
 div.font-box > .top_author{
+    padding: 5px;
+    background-color: #0000004a;
     color: white;
     bottom: 20px;
     left: 27px;
@@ -45,55 +48,63 @@ div.font-box > .top_author{
 
 div.top_music{
     float:left;
+    cursor: pointer;
 }
 
 div.sm-font-box{
     height: 206px;
     width: 93.3%;
     position: absolute;
-    background-color: rgba(0, 0, 0, 0.49);
-        top: 0;
+    /* background-color: rgba(0, 0, 0, 0.49); */
+    top: 0;
 }
 
 div.sm-font-box > .top_title{
     color: white;
-    bottom: 18px;
-    left: 8px;
+    bottom: 30px;
+    left: 15px;
     position: absolute;
-    font-size: 15px;
+    font-size: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-weight: 600;
     white-space: nowrap;
-    width: 92.8%;
+    text-align: left;
+    padding: 5px;
+    background-color: #0000004a;
 }
 
 div.sm-font-box > .top_author{
     color: white;
     bottom: -7px;
-    left: 8px;
+    left: 15px;
     position: absolute;
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
+    padding: 5px;
+    background-color: #0000004a;
 }
 
 div.sm-logo{
-    width: 98%;
-    height: 204px;
-    background-size: 104%;
-    background-position-x: -18px;
-    background-position-y: -90px;
-    margin-bottom: 10px;
+    width: 98.8%;
+    min-height: 200px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+    margin: 6px 0px;
     border-radius: 4px;
+    border: 1px solid #000000;
 }
 
 div.logo{
     border-radius: 4px;
     width: 98.8%;
-    height: 417px;
-    background-size: 162%;
-    background-position-y: -136px;
-    background-position-x: -202px;
+    min-height: 417px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 1px solid #000000;
     margin: 0;
 }
 
@@ -115,7 +126,6 @@ strong.logo{
     text-align: left;
     white-space: nowrap;
     word-wrap: normal;
-    
     overflow: hidden;
 }
 
@@ -144,6 +154,7 @@ p.music_title{
 .album_img{
     width:58px;
     height:58px;
+    border-radius: 4px;
 }
 
 p.music_artist{
