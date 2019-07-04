@@ -37,13 +37,13 @@ div.font-box > .top_title{
 
 div.font-box > .top_author{
     padding: 5px;
-    background-color: #0000004a;
+    background-color: #00000073;
     color: white;
-    bottom: 20px;
+    bottom: 21px;
     left: 27px;
     position: absolute;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 div.top_music{
