@@ -136,7 +136,7 @@ public class YoutubeService {
             Map<String, String> element = new HashMap<String, String>();
             element.put("title", snippet.getTitle());
             element.put("url", rId.getVideoId());
-            element.put("thumbnail", thumbnail.getUrl());
+            element.put("thumbnail", "https://i.ytimg.com/vi/"+ rId.getVideoId() + "/maxresdefault.jpg");
             // element.put("author", chaResultList.get(0).getSnippet().getTitle());
             output.add(element);
         }
@@ -176,7 +176,7 @@ public class YoutubeService {
           Map<String, String> element = new HashMap<String, String>();
           element.put("title", snippet.getTitle());
           element.put("reg_date", snippet.getPublishedAt().toString());
-          element.put("thumbnail", thumbnail.getUrl());
+          element.put("thumbnail", "https://i.ytimg.com/vi/"+ result.getId() + "/maxresdefault.jpg");
           element.put("Id", result.getId());
           
           output.add(element);
