@@ -1,25 +1,264 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thmeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121184936-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-121184936-4');
+    </script>
+
+    <title> 🍒 CherryChart </title>
+    <meta property="og:title" content="CherryChart">
+    <meta property="og:site_name" content="🍒 CherryChart">
+    <meta property="og:image" content="/img/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/MDB/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/MDB/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="/css/custom_style-0.0.1.min.css" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="/css/chart.css" rel="stylesheet">
+
+    <!-- Your custom styles (optional) -->
+    <link href="/css/inital_css.css" rel="stylesheet">
+
+    <!-- Color Css -->
+    <link href="/css/color.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+
 </head>
-<body>
+
+<body style="height:100%;">
+    <!-- Image and text -->
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar"
+        style="    background-color: #161c27b5;">
+        <div class="container">
+
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">
+                <strong class="logo"><span class="cherry_color">C</span>herry</strong>
+            </a>
+
+            <!-- Collapse -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!-- Left -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active_nav">
+                        <a class="nav-link waves-effect waves-light" href="/">HOME
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/melon">
+                            <span class="melon_color">M</span>ELON</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/genie">
+                            <span class="genie_color">G</span>ENIE
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="/bugs">
+                            <span class="bugs_color">B</span>UGS
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Right -->
+                <ul class="navbar-nav nav-flex-icons">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link waves-effect waves-light" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="mailto:redgee49@gmail.com" class="nav-link waves-effect waves-light" target="_blank">
+                            <i class="far fa-envelope"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/oauth2/authorization/google" class="nav-link waves-effect waves-light"
+                            target="_blank">
+                            <i class="fab fa-google"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
 
 
-    <div class="container" style="text-align: center;">
-    
-        <a href="javascript:;" class="btn_social" data-social="google">
-            <img src="https://banner2.kisspng.com/20180603/lcu/kisspng-google-logo-google-search-google-account-5b13d7b19f5413.0778665315280270576526.jpg"/>
-        </a>
+    <div class="view full-page-intro"
+        style="    background-image: url(../img/chart_bg.svg);
+    background-size: cover;">
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+            <!-- Content -->
+            <div class="container">
+
+                <!--Grid row-->
+                <div class="row wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
+
+                    <!--Grid column-->
+                    <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+                        <strong class="display-4 font-weight-bold logo" style="font-size:43px;"><span class="cherry_color">C</span>herryChart</strong>
+
+                        <hr class="hr-light">
+
+                        <p>
+                            <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</strong>
+                        </p>
+
+                        <p class="mb-4 d-none d-md-block">
+                            <strong>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s,
+            when an unknown printer took a galley of type and scrambled it to make a type specimen book.</strong>
+                        </p>
+                    </div>
+                    <!--Grid column-->
+
+                    <!--Grid column-->
+                    <div class="col-md-6 col-xl-5 mb-4">
+
+                        <!--Card-->
+                        <div class="card">
+
+                            <form class="text-center border border-light p-5">
+
+                                <p class="h4 mb-4">Sign in</p>
+
+                                <!-- Email -->
+                                <input type="email" id="defaultLoginFormEmail" class="form-control mb-4"
+                                    placeholder="E-mail">
+
+                                <!-- Password -->
+                                <input type="password" id="defaultLoginFormPassword" class="form-control mb-4"
+                                    placeholder="Password">
+
+                                <div class="d-flex justify-content-around">
+                                    <div>
+                                        <!-- Remember me -->
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input"
+                                                id="defaultLoginFormRemember">
+                                            <label class="custom-control-label" for="defaultLoginFormRemember">Remember
+                                                me</label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- Forgot password -->
+                                        <a href="">Forgot password?</a>
+                                    </div>
+                                </div>
+
+                                <!-- Sign in button -->
+                                <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+                                <!-- Register -->
+                                <p>Not a member?
+                                    <a href="">Register</a>
+                                </p>
+
+                                <!-- Social login -->
+                                <p>or sign in with:</p>
+
+                                <a href="javascript:;" class="d-flex justify-content-around btn_social"
+                                    data-social="google">
+                                    <img src="img/btn_google.png">
+                                </a>
+
+                            </form>
+
+                        </div>
+                        <!--/.Card-->
+
+                    </div>
+                    <!--Grid column-->
+
+                </div>
+                <!--Grid row-->
+
+            </div>
+            <!-- Content -->
+
+        </div>
+        <!-- Mask & flexbox options-->
+
     </div>
 
 
+    
+
+
+
+
+    <footer class="page-footer text-center font-small wow fadeIn" style="visibility: visible; animation-name: fadeIn;      
+      width: 100%;
+      z-index: -1;">
+
+
+
+        <!--Copyright-->
+        <div class="footer-copyright py-3">
+            © 2019 Copyright:
+            <a href="#" target="_blank"> Cherry.com </a>
+        </div>
+        <!--/.Copyright-->
+
+    </footer>
+
+    <script type="text/javascript" src="/MDB/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/MDB/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/MDB/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/MDB/js/mdb.min.js"></script>
+    <div class="hiddendiv common"></div>
+    <!-- Initializations -->
+    <script type="text/javascript">
+        // Animations initialization
+        new WOW().init();
+    </script>
     <script>
-        $('.btn_social').click(function(){
+        $('.btn_social').click(function () {
             var socialType = $(this).data('social');
-            location.href="/oauth2/authorization/"+socialType;
+            location.href = "/oauth2/authorization/" + socialType;
         });
     </script>
+
 </body>
+<script type="text/javascript" src="/js/YoutubeHandler.js"></script>
+
 </html>
