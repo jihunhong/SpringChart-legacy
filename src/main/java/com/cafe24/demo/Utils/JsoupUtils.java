@@ -133,7 +133,7 @@ public class JsoupUtils {
 				String artist = artist_names.get(i + 5).text();
 				String album = album_names.get(i).text();
 
-				String img_url = album_imgs.get(i).select("img").attr("src").toString();
+				String img_url = album_imgs.get(i + 5).select("img").attr("src").toString();
 				
 				Music music = new Music();
 				music.setRank(i + 1);

@@ -2,10 +2,10 @@ package com.cafe24.demo.Controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.demo.DAO.VideoDAO;
 import com.cafe24.demo.Service.YoutubeService;
 import com.cafe24.demo.Utils.JsoupUtils;
 import com.cafe24.demo.VO.Music;
@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 class HomeController {
@@ -23,6 +22,9 @@ class HomeController {
 
     @Autowired
     YoutubeService youtubeService;
+
+    @Autowired
+    private VideoDAO videoDAO;
 
     @RequestMapping(value = { "/", "/melon" })
     public String Home(Model model) throws IOException {
@@ -71,17 +73,19 @@ class HomeController {
     @RequestMapping(value = "/bugs")
     public String Bugs(Model model) throws IOException {
 
-        List<Music> bugs = new ArrayList<>();
-
-        bugs = utils.getBugsChart();
+        List<Music> bugs = utils.getBugsChart();
 
         ArrayList<Map<String, String>> output = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
             String searchQuery = bugs.get(i).getTitle() + bugs.get(i).getArtist();
+            String currentTitle = bugs.get(i).getTitle();
+            if( videoDAO.existsById(currentTitle) ){
+                output.add(videoDAO.findById(currentTitle));
+            }
             output.addAll(youtubeService.SearchOnYoutube(searchQuery));
         }
-
+        
         model.addAttribute("output", output);
 
         model.addAttribute("output", output);

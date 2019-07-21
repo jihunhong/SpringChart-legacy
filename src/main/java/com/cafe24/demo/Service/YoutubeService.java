@@ -1,8 +1,5 @@
 package com.cafe24.demo.Service;
 
-import static com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets.load;
-
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -12,29 +9,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.demo.DAO.VideoDAO;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
-import com.google.api.client.extensions.java6.auth.oauth2.FileCredentialStore;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
 import com.google.api.client.googleapis.auth.oauth2.GoogleClientSecrets;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.client.util.Data;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.YouTubeScopes;
-import com.google.api.services.youtube.YouTube.PlaylistItems;
-import com.google.api.services.youtube.YouTube.Playlists;
 import com.google.api.services.youtube.model.Channel;
 import com.google.api.services.youtube.model.ChannelListResponse;
 import com.google.api.services.youtube.model.Playlist;
-import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
 import com.google.api.services.youtube.model.PlaylistSnippet;
 import com.google.api.services.youtube.model.ResourceId;
@@ -42,8 +34,8 @@ import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.SearchResultSnippet;
 import com.google.api.services.youtube.model.Thumbnail;
-import com.google.common.collect.Lists;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +56,9 @@ public class YoutubeService {
 
     @Value("${apikey}")
     private String apikey = "";
+
+    @Autowired
+    private VideoDAO videoDAO;
 
     static{
       try{
@@ -214,13 +209,12 @@ public class YoutubeService {
 
 
     public ArrayList<Map<String, String>> OfficialSort(ArrayList<Map<String, String>> output){
-        for (int i = 2; i >= 0; i--) {
+        
+        for (int i = output.size()-1; i >= 0; i--) {
             if (output.get(i).get("title").contains("Official") || output.get(i).get("title").contains("MV") || output.get(i).get("title").contains("M/V")) {
                 output.set(0, output.get(i));
-                break;
             }
         }
-
         return output;
     }
     

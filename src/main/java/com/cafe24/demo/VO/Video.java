@@ -2,6 +2,7 @@ package com.cafe24.demo.VO;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Getter;
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Table
 public class Video{
 
+    @Id
     @Column
     private String videoId;
 
