@@ -55,7 +55,7 @@ public class YoutubeService {
     private static YouTube youtube;
 
     @Value("${apikey}")
-    private String apikey = "";
+    private String apikey;
 
 
     static{
