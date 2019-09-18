@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.cafe24.demo.DAO.VideoDAO;
 import com.cafe24.demo.Service.YoutubeService;
 import com.cafe24.demo.Utils.JsoupUtils;
 import com.cafe24.demo.VO.Music;
@@ -22,9 +21,6 @@ class HomeController {
 
     @Autowired
     YoutubeService youtubeService;
-
-    @Autowired
-    private VideoDAO videoDAO;
 
     @RequestMapping(value = { "/", "/melon" })
     public String Home(Model model) throws IOException {
@@ -79,10 +75,7 @@ class HomeController {
 
         for (int i = 0; i < 3; i++) {
             String searchQuery = bugs.get(i).getTitle() + bugs.get(i).getArtist();
-            String currentTitle = bugs.get(i).getTitle();
-            if( videoDAO.existsById(currentTitle) ){
-                output.add(videoDAO.findById(currentTitle));
-            }
+            
             output.addAll(youtubeService.SearchOnYoutube(searchQuery));
         }
         

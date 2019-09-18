@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.cafe24.demo.DAO.VideoDAO;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.java6.auth.oauth2.AuthorizationCodeInstalledApp;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
@@ -57,8 +57,6 @@ public class YoutubeService {
     @Value("${apikey}")
     private String apikey = "";
 
-    @Autowired
-    private VideoDAO videoDAO;
 
     static{
       try{
@@ -210,9 +208,10 @@ public class YoutubeService {
 
     public ArrayList<Map<String, String>> OfficialSort(ArrayList<Map<String, String>> output){
         
-        for (int i = output.size()-1; i >= 0; i--) {
+        for (int i = 2; i >= 0; i--) {
             if (output.get(i).get("title").contains("Official") || output.get(i).get("title").contains("MV") || output.get(i).get("title").contains("M/V")) {
                 output.set(0, output.get(i));
+                break;
             }
         }
         return output;
