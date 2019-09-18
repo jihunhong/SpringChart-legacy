@@ -130,6 +130,7 @@ public class YoutubeService {
             element.put("title", snippet.getTitle());
             element.put("url", rId.getVideoId());
             element.put("thumbnail", "https://i.ytimg.com/vi/"+ rId.getVideoId() + "/maxresdefault.jpg");
+            element.put("description", snippet.getDescription());
             // element.put("author", chaResultList.get(0).getSnippet().getTitle());
             output.add(element);
         }

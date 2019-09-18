@@ -13,5 +13,6 @@ public class Music {
     private String id;
     private String album;
     private String url;
+    private String description;
 
 }
